@@ -1,0 +1,21 @@
+*{
+  margin: 0;
+  padding: 0;
+  border: none;
+  list-style-type: none;
+  a{
+    text-decoration: none;
+    color: #444;
+    &:hover, &:focus{
+      text-decoration: none;
+    }
+  }
+}
+
+.wrapper{
+  color: #444;
+}
+    .center{
+      max-width: 1140px;
+      margin: 0 auto;
+    }

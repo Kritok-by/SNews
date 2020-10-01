@@ -1,0 +1,21 @@
+.settings{
+  padding: 0;
+  padding-top: 30px;
+  h2{
+    text-align: center;
+  }
+}
+.log-out-block{
+  width: 100%;
+  padding: 0;
+  padding-bottom: 30px;
+  .logout{
+    margin: 0;
+    background: none;
+    color: #be0016;
+    &:hover{
+      color: #fff;
+      background: #be0016;
+    }
+  }
+}
