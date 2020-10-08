@@ -1,11 +1,19 @@
-import React from 'react'
-import Tabs from './Tabs/Tabs'
+
+import React from "react";
+import Tabes from "./Tabs/Tabes";
+import "./Posts.scss";
+import { PostService } from "../../../services/PostsService";
+
+
 
 export default function Posts() {
-  return(
+  return (
     <div className="all-posts">
-      <Tabs/>
-      
+      <Tabes />
+      <hr />
+      <div className="posts">
+      <PostService/>
+      </div>
     </div>
-  )
-};
+  );
+}

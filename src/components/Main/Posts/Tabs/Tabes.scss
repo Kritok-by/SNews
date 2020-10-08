@@ -1,0 +1,23 @@
+.tabs-container {
+  header{
+    background: none;
+    box-shadow: none;
+  }
+  button{
+    outline: none;
+  }
+      .MuiTab-textColorPrimary {
+        color: #444;
+      }
+      .MuiTab-textColorPrimary.Mui-selected {
+        color: #be0016;
+      }
+      .MuiTabs-scroller, .MuiTabs-scrollable {
+        .MuiTabs-indicator{
+          background-color: #be0016;
+        }
+      }
+  hr{
+    margin-top: 0;
+  }
+}

@@ -1,7 +1,6 @@
 header {
   font-family: "Georgia", serif;
-  transition: all ease-in-out 0.5s;
-  box-shadow: 0 5px 5px rgba(0,0,0,0.05);
+  transition: 0.5s;
   .navigation {
     position: fixed;
     z-index: 5;
@@ -16,14 +15,23 @@ header {
     .center {
       display: flex;
       justify-content: space-between;
-      .logo {
-        width: 100px;
+      a{
         display: flex;
         align-items: center;
-        cursor: pointer;
-        img {
-          max-width: 100%;
-          height: auto;
+        .logo {
+          width: 100px;
+          transform: translateY(100%);
+          display: flex;
+          align-items: center;
+          transition: 350ms ease;
+          cursor: pointer;
+          img {
+            max-width: 100%;
+            height: auto;
+          }
+        }
+        .vis{
+          transform: translateY(0%);
         }
       }
       ul {
@@ -31,59 +39,30 @@ header {
         align-items: center;
         justify-content: space-between;
         margin: 0;
+        div{
+          display: flex;
+          align-items: center;
+        }
         li {
+          display: flex;
+          align-items: center;
           margin-left: 20px;
           transition: all ease-in-out 0.4s;
           border-bottom: 2px solid #000;
-          a{
-            &:hover {
-              color: #be0016;}
-
-          }
+          color: #fff;
+          cursor: pointer;
           &:hover{
             border-bottom: 2px solid #be0016;
+            color: #be0016;
           }
           }
         }
+      }
+    }
+    .header-nav{
+      .MuiAvatar-root{
+        width: 30px;
+        height: 30px;
       }
     }
   }
-  .prewiew-block {
-    display: flex;
-    justify-content: space-between;
-    font-weight: 400;
-    font-size: 16px;
-    padding-top: 80px;
-    padding-bottom: 40px;
-    .main-logo {
-      width: 200px;
-      img {
-        max-width: 100%;
-        height: auto;
-      }
-    }
-    .now {
-      .date {
-        display: inline-block;
-        padding-bottom: 7px;
-        border-bottom: 1px solid #000;
-      }
-      .socials {
-        display: flex;
-        justify-content: space-around;
-        width: 100%;
-        padding-top: 7px;
-        a {
-          color: #000;
-          width: 30px;
-          height: 30px;
-          line-height: 30px;
-          font-size: 20px;
-          transition: all ease-in-out 0.4s;
-          &:hover {
-            color: #be0016;
-          }
-        }
-      }
-    }
-}

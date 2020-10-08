@@ -1,31 +1,42 @@
-import React from 'react'
-import Async from 'react-async'
-import Post from '../components/Main/Posts/Post/Post'
-import getData from './getData'
-
-const link = 'https://conduit.productionready.io/api/articles?limit=10&offset=0'
-
-const PostService = () => (
-  <Async promiseFn={getData(link)}>
-    <Async.Loading>
-      <div className="spinner-border text-light" role="status">
-        <span className="sr-only">Loading...</span>
-      </div>
-    </Async.Loading>
-
-    <Async.Resolved>
-      {(data) => (
-        <section className="all-tags">
-        {data.articles.map((elem, index)=><Post key={index} data={elem}/>)}
-      </section>
-      )}
-    </Async.Resolved>
-
-    <Async.Rejected>
-      {(error) => `Something went wrong: ${error.message}`}
-    </Async.Rejected>
-  </Async>
-);
+import { LinearProgress } from '@material-ui/core';
+import { Pagination } from '@material-ui/lab';
+import React, { useState } from 'react'
+import { Async } from 'react-async';
+import { useSelector } from 'react-redux';
+import Post from '../components/Main/Posts/Post/Post';
 
 
-export default PostService;
+
+export const PostService = () => {
+  const [page, setPage] = useState(1),
+          url = useSelector(i=>i.articles.url);
+  const loadPosts = () =>
+    fetch(`${url}${page*10}`)
+      .then(res => (res.ok ? res : Promise.reject(res)))
+      .then(res => res.json())
+  return (
+    <Async promiseFn={loadPosts}>
+          <Async.Pending>
+            <LinearProgress />
+          </Async.Pending>
+          <Async.Fulfilled>
+            {(data) =>{
+              return (
+                <>
+                {data.articles.map((i, ind) => {
+                  return <Post data={i} key={ind} />
+                })}
+                <Pagination
+              count={data.articlesCount/10}
+              shape="rounded"
+              page={page}
+              onChange={(e, value) => setPage(value)}
+            />
+                </>
+              )}
+            }
+          </Async.Fulfilled>
+          <Async.Rejected>{(error) => <p>{error.message}</p>}</Async.Rejected>
+        </Async>
+  )
+};
