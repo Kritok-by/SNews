@@ -18,7 +18,7 @@ export const SignIn = () => {
   const submit=(e)=>{
     e.preventDefault()
     LoginPost(login, pass)
-    sessionStorage.setItem('account',`${login} ${pass}`)
+    localStorage.setItem('account',`${login} ${pass}`)
 
   }
   useEffect(() => {
@@ -26,7 +26,7 @@ export const SignIn = () => {
       history.push('/')
     }
   });
-  
+
   return (
     <div className="container">
       <div className="row">

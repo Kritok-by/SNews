@@ -1,7 +1,9 @@
 import React, { useState } from 'react'
+import { useSelector } from 'react-redux';
 import { NewArticleService } from '../../services/NewArticleService';
 
 export const AddArticle = () => {
+  const token = useSelector(i=>i.autorize.currentUser.token)
   const [title, setTitle] = useState(),
         [about, setAbout] = useState(),
         [text, setText] = useState(),
@@ -9,7 +11,7 @@ export const AddArticle = () => {
 
   const submit=(e)=>{
     e.preventDefault()
-    NewArticleService(title, about, text, tags)
+    NewArticleService(title, about, text, tags, token)
   }
 
   return(

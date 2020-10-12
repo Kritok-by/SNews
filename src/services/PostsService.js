@@ -8,10 +8,24 @@ import Post from '../components/Main/Posts/Post/Post';
 
 
 export const PostService = () => {
-  const [page, setPage] = useState(1),
+  const token = useSelector(i=>i.autorize.currentUser.token);
+  const header = () => {
+    if(token){
+      return  {
+        'Authorization' : `Token ${token}`,
+        'Content-Type': 'application/json; charset=utf-8'
+      }
+    }
+      return {
+        'Content-Type': 'application/json; charset=utf-8'
+      }
+  }
+  const [page, setPage] = useState(0),
           url = useSelector(i=>i.articles.url);
   const loadPosts = () =>
-    fetch(`${url}${page*10}`)
+    fetch(`${url}${page}`,{
+      headers: header()
+    })
       .then(res => (res.ok ? res : Promise.reject(res)))
       .then(res => res.json())
   return (
@@ -21,6 +35,7 @@ export const PostService = () => {
           </Async.Pending>
           <Async.Fulfilled>
             {(data) =>{
+              console.log(data)
               return (
                 <>
                 {data.articles.map((i, ind) => {

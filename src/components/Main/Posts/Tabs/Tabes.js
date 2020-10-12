@@ -13,7 +13,7 @@ export default function Tabes() {
         auth = useSelector(state=>state.autorize.currentUser),
         history = useHistory(),
         dispatch = useDispatch(),
-        feedUrl = 'https://conduit.productionready.io/api/articles/feed?limit=10&offset=',
+        feedUrl = 'https://conduit.productionready.io/api/articles/feed?limit=10&offset=0',
         url = 'https://conduit.productionready.io/api/articles?limit=10&offset=';
 
   const handleChange = (event, newValue) => {

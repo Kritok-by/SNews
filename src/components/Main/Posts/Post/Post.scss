@@ -12,6 +12,7 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
+    margin-bottom: 10px;
     .who{
       display: flex;
       align-items: center;
@@ -43,6 +44,9 @@
       color: #000;
       margin-bottom: 20px;
     }
+    a{
+      text-decoration: none;
+    }
   }
   .more-buttons{
     display: flex;
@@ -52,6 +56,12 @@
       transition: 170ms ease;
       &:hover{
         color: #be0016;
+      }
+    }
+    .ui.left.labeled.button{
+      button, a{
+        padding-top: 4px;
+        padding-bottom: 4px;
       }
     }
   }
