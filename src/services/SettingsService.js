@@ -1,3 +1,6 @@
+import { store } from "..";
+import { errLogIn, logIn } from "../redux/Actions";
+
 export const NewSettings = async (img = '', name = '', bio = '', email = '', pass = '', state) => {
   const url = "https://conduit.productionready.io/api/user";
   const newDate = new Date();
@@ -22,13 +25,11 @@ export const NewSettings = async (img = '', name = '', bio = '', email = '', pas
   })
     .then((res) => res.json())
     .then((data) => {
-      // if (data.errors) {
-      //   console.log(data);
-      //   // store.dispatch(errLogIn(Object.entries(data.errors)))
-      // } else if (data.user) {
-      //   console.log(data);
-      //   // store.dispatch(logIn(data.user))
-      // }
-      console.log(data)
+      if (data.errors) {
+        store.dispatch(errLogIn(Object.entries(data.errors)))
+      } else if (data.user) {
+        console.log(data);
+        store.dispatch(logIn(data.user))
+      }
     });
 };

@@ -4,7 +4,6 @@
 export const NewArticleService = (title, about, text, tags, token) => {
   const url = 'https://conduit.productionready.io/api/articles/';
   const post = {"article":{"tagList": [],"title": title,"description": about,"body": text}};
-  console.log(token)
 
    fetch(url, {
     method: 'POST',

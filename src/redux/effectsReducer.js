@@ -1,7 +1,8 @@
 import { HIDE_ALERT, SHOW_ALERT } from "./Types"
 
 const initialState = {
-  alert: null
+  alert: null,
+  
 }
 
 
