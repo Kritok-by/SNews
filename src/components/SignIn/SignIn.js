@@ -2,14 +2,16 @@ import { Link, useHistory } from "react-router-dom";
 import React, { useEffect, useState } from "react";
 import "./SignIn.scss";
 import { LoginPost } from "../../services/LoginService";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { Alert } from "@material-ui/lab";
+import { numberTab } from "../../redux/Actions";
 export const SignIn = () => {
   const [login, setLogin] = useState(''),
         [pass, setPass] = useState(''),
         error = useSelector(state => state.autorize.errorLogin),
         auth = useSelector(state=>state.autorize.currentUser),
-        history = useHistory();
+        history = useHistory(),
+        dispatch = useDispatch();
         const alert = () =>{
           if(error.length){
             return error.map((i, e)=><Alert key={e} variant="outlined" severity="error">{`Email or password ${i}`}</Alert>)
@@ -19,7 +21,7 @@ export const SignIn = () => {
     e.preventDefault()
     LoginPost(login, pass)
     localStorage.setItem('account',`${login} ${pass}`)
-
+    dispatch(numberTab(1))
   }
   useEffect(() => {
     if(auth.id !== undefined){

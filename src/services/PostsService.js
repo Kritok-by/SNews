@@ -35,7 +35,6 @@ export const PostService = () => {
           </Async.Pending>
           <Async.Fulfilled>
             {(data) =>{
-              console.log(data)
               return (
                 <>
                 {data.articles.map((i, ind) => {

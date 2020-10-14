@@ -1,19 +1,16 @@
-import React, { useState } from 'react'
-import ProfilePostService from '../../../services/ProfilePostService'
-import Pagination from '@material-ui/lab/Pagination';
+import React from 'react'
 import ProfileTabs from './ProfileTabs/ProfileTabs';
-import { useSelector } from 'react-redux';
+import ProfilePostsService from '../../../services/ProfilePostsService';
 
-export default function Posts() {
-  const [page, setPage] = useState(0),
-        user = useSelector(i=>i.autorize.currentUser.username);
+export default function ProfilePosts({data}) {
+  const user = data.username;
+        console.log(data)
   return(
     <div className="all-posts">
-      <ProfileTabs/>
+      <ProfileTabs user={user}/>
       <hr/>
       <div className="posts">
-        <ProfilePostService page={page} user={user}/>
-        <Pagination count={10} value={page} shape="rounded" onChange={(e,value)=>setPage(--value*10)}/>
+        <ProfilePostsService user={user}/>
       </div>
     </div>
   )

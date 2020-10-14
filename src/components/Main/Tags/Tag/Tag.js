@@ -16,7 +16,7 @@ export const Tag = ({data}) => {
   };
   return(
     <Chip
-        label={data}
+        label={`#${data}`}
         onClick={handleClick}
         variant="outlined"
       />

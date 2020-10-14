@@ -8,16 +8,16 @@
   }
   .all-tags {
     div {
-      border: none;
       margin: 4px;
-      border-bottom: 2px solid rgba(100, 100, 100, 0.3);
+      border: 1px solid rgba(0, 0, 0, 0.23);
+      border-radius: .28571429rem;
       font-weight: bold;
       color: #444;
       border-radius: 4px;
       transition: 0.5s;
       &:hover {
         color: #be0016;
-        border-bottom: 2px solid #be0016;
+        border-color: #be0016;
       }
     }
   }

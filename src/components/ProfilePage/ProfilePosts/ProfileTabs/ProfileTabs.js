@@ -1,6 +1,6 @@
 import { AppBar, Tab, Tabs } from '@material-ui/core'
 import React, { useState } from 'react'
-import './Tabs.scss'
+
 
 export default function ProfileTabs() {
   const [value, setValue] = useState(1);

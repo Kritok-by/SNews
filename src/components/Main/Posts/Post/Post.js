@@ -1,5 +1,5 @@
 import { Avatar, Chip } from "@material-ui/core";
-import React from "react";
+import React, { useState } from "react";
 import "./Post.scss";
 import 'semantic-ui-css/semantic.min.css'
 import { Button } from 'semantic-ui-react'
@@ -12,7 +12,10 @@ import { Like } from "../../../../services/LikeService";
  function Post({ data }) {
    const dispatch = useDispatch(),
           user = useSelector(i=>i.autorize.currentUser.token),
-          slug = data.slug;
+          slug = data.slug,
+          url = `https://conduit.productionready.io/api/articles/${slug}/favorite`,
+          [like, setLike] = useState(data.favorited),
+          [likeCount, setLikeCount] = useState(data.favoritesCount);
 
 
   const handleClick = (i) => {
@@ -22,11 +25,17 @@ import { Like } from "../../../../services/LikeService";
   };
   const onLike = ()=>{
     let method;
-    data.favorited?method='DELETE':method='POST';
-    console.log(method)
-    Like(slug,method,user)
+    setLike(prev=>!prev)
+    if(like){
+      method='DELETE'
+      setLikeCount(prev=>--prev)
+    } else{
+      method='POST'
+      setLikeCount(prev=>++prev)
+    }
+    Like(url,method,user)
   }
-  const color = ()=>data.favorited?'red':'grey'
+  const color = ()=>like?'red':'grey'
   console.log()
   return (
     <div className="post">
@@ -38,7 +47,7 @@ import { Like } from "../../../../services/LikeService";
         <span className="when">{new Date(data.createdAt).toLocaleDateString()}</span>
       </div>
       <hr />
-      <Link to={`/post/${data.slug}`}><div className="about-post" onClick={()=>dispatch(currentPost(data.slug))}>
+      <Link to={`/post/${slug}`}><div className="about-post" onClick={()=>dispatch(currentPost(slug))}>
         <h3>{data.title}</h3>
         <p>{data.description}</p>
       </div></Link>
@@ -46,14 +55,14 @@ import { Like } from "../../../../services/LikeService";
       <div className="more-buttons">
         <div>
         {data.tagList.map((i, ind) => (
-          <Chip label={i} onClick={()=>handleClick(i)} variant="outlined" key={ind} />
+          <Chip label={`#${i}`} onClick={()=>handleClick(i)} variant="outlined" key={ind} />
         ))}
         </div>
       <Button
       onClick={onLike}
       color={color()}
       icon='heart'
-      label={{ as: 'a', basic: true, content: data.favoritesCount}}
+      label={{ as: 'a', basic: true, content: likeCount}}
       labelPosition='left'
     />
       </div>

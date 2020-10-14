@@ -1,15 +1,12 @@
 import { Avatar, Chip } from '@material-ui/core'
 import React from 'react'
-import BookmarkIcon from '@material-ui/icons/Bookmark';
 import BookmarkBorderIcon from '@material-ui/icons/BookmarkBorder';
-import './Post.scss'
 
 const handleClick = () => {
   console.info('You clicked the Chip.');
 };
 
 export default function Post({data}) {
-  console.log(data)
     return(
       <div className="post">
         <div className="who-when">

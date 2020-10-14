@@ -1,6 +1,4 @@
-export function Like(slug, method, token){
-  const url = `https://conduit.productionready.io/api/articles/${slug}/favorite`;
-
+export function Like(url, method, token){
    fetch(url, {
     method: method,
     body: JSON.stringify({}),

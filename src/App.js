@@ -11,7 +11,6 @@ import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import { LoginPost } from './services/LoginService';
 import { ProfilePageService } from './services/ProfilePageService';
 import { ArticlePageService } from './services/ArticlePageService';
-import {UserPage} from './components/UserPage/UserPage'
 import { useSelector } from 'react-redux';
 
 function App() {
@@ -35,7 +34,6 @@ function App() {
           <Route exact path="/settings"><YSettings/></Route>
           <Route exact path="/new-post"><AddArticle/></Route>
           <Route exact path="/post/:article?"><ArticlePageService/></Route>
-          {/* <Route exact path={`/profile/${user.username}`}><UserPage data={user}/></Route> */}
           <Route exact path={`/profile/:user?`}><ProfilePageService/></Route>
         </Switch>
       </Router>

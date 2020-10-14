@@ -51,6 +51,7 @@
   .more-buttons{
     display: flex;
     justify-content: space-between;
+    align-items: center;
     span{
       cursor: pointer;
       transition: 170ms ease;
@@ -58,7 +59,14 @@
         color: #be0016;
       }
     }
+    .MuiButtonBase-root{
+      margin: 2px;
+      border-radius: .28571429rem;
+      height: auto;
+    }
     .ui.left.labeled.button{
+      height: 25px;
+      margin-left: 30px;
       button, a{
         padding-top: 4px;
         padding-bottom: 4px;
