@@ -1,15 +1,13 @@
 import { LinearProgress } from '@material-ui/core';
 import React from 'react'
 import { Async } from 'react-async';
-import { useSelector } from 'react-redux';
 import { ArticlePage } from '../components/ArticlePage/ArticlePage';
 
 
 
-export const ArticlePageService = () => {
-  const post = useSelector(i=>i.articles.slug);
+export const ArticlePageService = ({match}) => {
   const loadPost = () =>
-    fetch(`https://conduit.productionready.io/api/articles/${post}`)
+    fetch(`https://conduit.productionready.io/api/articles/${match.params.article}`)
       .then(res => (res.ok ? res : Promise.reject(res)))
       .then(res => res.json())
   return (

@@ -6,15 +6,15 @@ import { ProfilePage } from '../components/ProfilePage/ProfilePage';
 
 
 
-export const ProfilePageService = () => {
+export const ProfilePageService = ({match}) => {
   const name = useSelector(i=>i.profile.profile),
         token = useSelector(i=>i.autorize.currentUser.token);
-
+  console.log(match.params.user)
   const loadPosts = () =>
-    fetch(`https://conduit.productionready.io/api/profiles/${name}`,{
+    fetch(`https://conduit.productionready.io/api/profiles/${match.params.user}`,{
 
         headers: {
-          'Authorization' : `Token ${token}`,
+          // 'Authorization' : `Token ${token}`,
           'Content-Type': 'application/json; charset=utf-8'
         }
     })

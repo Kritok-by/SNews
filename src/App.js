@@ -28,13 +28,13 @@ function App() {
       <Router>
         <Header/>
         <Switch>
-          <Route exact path="/"><Main/></Route>
-          <Route exact path="/signIn"><SignIn/></Route>
-          <Route exact path="/register"><SignUp/></Route>
-          <Route exact path="/settings"><YSettings/></Route>
-          <Route exact path="/new-post"><AddArticle/></Route>
-          <Route exact path="/post/:article?"><ArticlePageService/></Route>
-          <Route exact path={`/profile/:user?`}><ProfilePageService/></Route>
+          <Route exact path="/" component={Main} />
+          <Route exact path="/signIn" component={SignIn} />
+          <Route exact path="/register" component={SignUp} />
+          <Route exact path="/settings" component={YSettings} />
+          <Route exact path="/new-post" component={AddArticle} />
+          <Route exact path="/post/:article?" component={ArticlePageService} />
+          <Route exact path='/profile/:user?' component={ProfilePageService} />
         </Switch>
       </Router>
     </div>

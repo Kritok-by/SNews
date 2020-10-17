@@ -15,6 +15,7 @@ import { Like } from "../../../../services/LikeService";
           slug = data.slug,
           url = `https://conduit.productionready.io/api/articles/${slug}/favorite`,
           [like, setLike] = useState(data.favorited),
+          profileUrl = `https://conduit.productionready.io/api/articles?author=${data.author.username}&limit=10&offset=`,
           [likeCount, setLikeCount] = useState(data.favoritesCount);
 
 
@@ -35,14 +36,20 @@ import { Like } from "../../../../services/LikeService";
     }
     Like(url,method,user)
   }
+
   const color = ()=>like?'red':'grey'
-  console.log()
+
+  const linkProfile = ()=>{
+    dispatch(currentProfile(data.author.username))
+    dispatch(currentUrl(profileUrl))
+  }
+
   return (
     <div className="post">
       <div className="who-when">
         <div className="who">
           <Avatar alt="user" src={data.author.image} />
-          <Link to={`/profile/${data.author.username}`} ><span className="userN" onClick={()=>dispatch(currentProfile(data.author.username))}>{data.author.username}</span></Link>
+          <Link to={`/profile/${data.author.username}`} ><span className="userN" onClick={linkProfile}>{data.author.username}</span></Link>
         </div>
         <span className="when">{new Date(data.createdAt).toLocaleDateString()}</span>
       </div>

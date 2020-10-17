@@ -3,11 +3,12 @@ import { Pagination } from "@material-ui/lab";
 import React, { useState } from "react";
 import Async from "react-async";
 import { useSelector } from "react-redux";
-import Post from "../components/ProfilePage/ProfilePosts/ProfilePost/ProfilePost";
+import Post from "../components/Main/Posts/Post/Post";
 
 const ProfilePostService = () => {
   const [page, setPage] = useState(0),
           url = useSelector(i=>i.articles.url);
+
   const loadPosts = () =>
     fetch(`${url}${page}`)
       .then(res => (res.ok ? res : Promise.reject(res)))
@@ -19,6 +20,7 @@ const ProfilePostService = () => {
           </Async.Pending>
           <Async.Fulfilled>
             {(data) =>{
+              console.log(data)
               return (
                 <>
                 {data.articles.map((i, ind) => {
