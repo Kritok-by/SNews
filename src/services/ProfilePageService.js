@@ -7,16 +7,19 @@ import { ProfilePage } from '../components/ProfilePage/ProfilePage';
 
 
 export const ProfilePageService = ({match}) => {
-  const name = useSelector(i=>i.profile.profile),
-        token = useSelector(i=>i.autorize.currentUser.token);
-  console.log(match.params.user)
+  const token = useSelector(i=>i.autorize.currentUser.token);
+  const headers = ()=>{
+    if(token){
+      return {
+        'Authorization' : `Token ${token}`,
+        'Content-Type': 'application/json; charset=utf-8'
+      }
+    }
+    return {'Content-Type': 'application/json; charset=utf-8'}
+  }
   const loadPosts = () =>
     fetch(`https://conduit.productionready.io/api/profiles/${match.params.user}`,{
-
-        headers: {
-          // 'Authorization' : `Token ${token}`,
-          'Content-Type': 'application/json; charset=utf-8'
-        }
+      headers: headers()
     })
       .then(res => (res.ok ? res : Promise.reject(res)))
       .then(res => res.json())

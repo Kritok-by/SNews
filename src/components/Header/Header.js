@@ -4,7 +4,7 @@ import './Header.scss';
 import NotAuthorized from './NotAuthorized/NotAuthorized';
 import {Link} from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux';
-import { currentUrl } from '../../redux/Actions';
+import { currentUrl, numberTab } from '../../redux/Actions';
 
 export const Header = ()=>{
 const [number, setNumber] = useState(0),
@@ -19,11 +19,16 @@ const [number, setNumber] = useState(0),
       const ifAuth = ()=>{
         return auth.id === undefined ? <NotAuthorized/> : <Authorized/>
       }
+      const toMain = () => {
+        dispatch(currentUrl(url))
+          dispatch(numberTab(1));
+      };
+
   return(
     <header>
       <nav className='navigation '>
         <div className="center">
-        <Link to='/'><div className={`logo`} onClick={()=>dispatch(currentUrl(url))}>
+        <Link to='/'><div className={`logo`} onClick={toMain}>
             <img src={require('./img/logo.svg')} alt="" className={`main-logo-img`}/>
           </div></Link>
           {ifAuth()}

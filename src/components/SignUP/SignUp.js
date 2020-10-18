@@ -2,14 +2,21 @@ import { Link, useHistory } from 'react-router-dom';
 import React, { useEffect, useState } from 'react'
 import { RegisterPost } from '../../services/RegisterService';
 import { useSelector } from 'react-redux';
+import { Alert } from '@material-ui/lab';
 
 
 export const SignUp = () => {
   const [user, setUser] = useState(''),
         [pass, setPass] = useState(''),
         [mail, setMail] = useState(''),
+        error = useSelector(state => state.autorize.errorLogin),
         login = useSelector(state => state.autorize.currentUser),
         history = useHistory();
+
+        const alert = () =>{
+          if(error.length !== 0){
+            return error.map((i, e)=><Alert key={e} variant="outlined" severity="error">{i}</Alert>)
+            }}
 
 
   const submit=(e)=>{
@@ -28,6 +35,7 @@ export const SignUp = () => {
         <form className="col-md-6 offset-md-3 col-xs-12 sign-up" onSubmit={submit}>
           <h2>Sign up</h2>
           <Link to='/signIn'><span className="to-sign-up">Have an account?</span></Link>
+          {alert()}
           <div className="form-group">
             <label htmlFor="exampleInputEmail2">Username</label>
             <input

@@ -22,6 +22,7 @@ export const ProfilePage = ({data}) => {
     }
     return <Chip label="Follow" onClick={onFollow}/>
   }
+  console.log(data)
   const onFollow = ()=>{
     let method;
     setFollow(prev=>!prev)
@@ -32,8 +33,6 @@ export const ProfilePage = ({data}) => {
     }
     Like(followUrl,method,user)
   }
-  console.log(data)
-  console.log(currentUser)
   return(
     <article className='profile'>
       <div className="header-block">

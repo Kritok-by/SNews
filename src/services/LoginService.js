@@ -1,5 +1,5 @@
 import { store } from "..";
-import { logIn, errLogIn } from "../redux/Actions";
+import { logIn, showAlert } from "../redux/Actions";
 
 
 
@@ -18,7 +18,10 @@ export const LoginPost = (email, pass) => {
   .then(res=>res.json())
   .then(data=>{
     if(data.errors){
-      return store.dispatch(errLogIn(data.errors['email or password']))
+      Object.keys(data.errors).forEach(i=>{
+        data.errors[i].forEach(l=>store.dispatch(showAlert(`${i} ${l}`)))
+      })
+      // store.dispatch(showAlert(data.errors))
     } else if(data.user){
       return store.dispatch(logIn(data.user))
     }})

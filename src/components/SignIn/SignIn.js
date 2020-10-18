@@ -5,6 +5,7 @@ import { LoginPost } from "../../services/LoginService";
 import { useDispatch, useSelector } from "react-redux";
 import { Alert } from "@material-ui/lab";
 import { numberTab } from "../../redux/Actions";
+
 export const SignIn = () => {
   const [login, setLogin] = useState(''),
         [pass, setPass] = useState(''),
@@ -13,8 +14,8 @@ export const SignIn = () => {
         history = useHistory(),
         dispatch = useDispatch();
         const alert = () =>{
-          if(error.length){
-            return error.map((i, e)=><Alert key={e} variant="outlined" severity="error">{`Email or password ${i}`}</Alert>)
+          if(error.length !== 0){
+            return error.map((i, e)=><Alert key={e} variant="outlined" severity="error">{i}</Alert>)
             }}
 
   const submit=(e)=>{

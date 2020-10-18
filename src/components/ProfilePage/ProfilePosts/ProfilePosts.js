@@ -4,7 +4,6 @@ import ProfilePostsService from '../../../services/ProfilePostsService';
 
 export default function ProfilePosts({data}) {
   const user = data.username;
-        console.log(data)
   return(
     <div className="all-posts">
       <ProfileTabs user={user}/>

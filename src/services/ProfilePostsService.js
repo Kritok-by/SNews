@@ -7,38 +7,54 @@ import Post from "../components/Main/Posts/Post/Post";
 
 const ProfilePostService = () => {
   const [page, setPage] = useState(0),
-          url = useSelector(i=>i.articles.url);
+    url = useSelector((i) => i.articles.url);
+  const token = useSelector((i) => i.autorize.currentUser.token);
+  const header = () => {
+    if (token) {
+      return {
+        Authorization: `Token ${token}`,
+        "Content-Type": "application/json; charset=utf-8",
+      };
+    }
+    return {
+      "Content-Type": "application/json; charset=utf-8",
+    };
+  };
 
   const loadPosts = () =>
-    fetch(`${url}${page}`)
-      .then(res => (res.ok ? res : Promise.reject(res)))
-      .then(res => res.json())
+    fetch(`${url}${page}`, {
+      headers: header(),
+    })
+      .then((res) => (res.ok ? res : Promise.reject(res)))
+      .then((res) => res.json());
   return (
     <Async promiseFn={loadPosts}>
-          <Async.Pending>
-            <LinearProgress />
-          </Async.Pending>
-          <Async.Fulfilled>
-            {(data) =>{
-              console.log(data)
-              return (
-                <>
+      <Async.Pending>
+        <LinearProgress />
+      </Async.Pending>
+      <Async.Fulfilled>
+        {(data) => {
+          if(data.articlesCount !== 0){
+            return (
+              <>
                 {data.articles.map((i, ind) => {
-                  return <Post data={i} key={ind} />
+                  return <Post data={i} key={ind} />;
                 })}
                 <Pagination
-              count={data.articlesCount/10}
-              shape="rounded"
-              page={page}
-              onChange={(e, value) => setPage(value)}
-            />
-                </>
-              )}
-            }
-          </Async.Fulfilled>
-          <Async.Rejected>{(error) => <p>{error.message}</p>}</Async.Rejected>
-        </Async>
-  )
+                  count={Math.ceil(data.articlesCount / 10)}
+                  shape="rounded"
+                  page={page + 1}
+                  onChange={(e, value) => setPage(value - 1)}
+                />
+              </>
+            );
+          }
+          return <h3>Articles not yet...</h3>
+        }}
+      </Async.Fulfilled>
+      <Async.Rejected>{(error) => <p>{error.message}</p>}</Async.Rejected>
+    </Async>
+  );
 };
 
 export default ProfilePostService;

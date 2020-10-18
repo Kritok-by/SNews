@@ -1,6 +1,6 @@
 
 import { store } from "..";
-import { logIn, errLogIn } from "../redux/Actions";
+import { logIn, showAlert } from "../redux/Actions";
 
 
 
@@ -19,7 +19,10 @@ export const RegisterPost = (user, email, pass) => {
   .then(res=>res.json())
   .then(data=>{
     if(data.errors){
-      store.dispatch(errLogIn(Object.entries(data.errors)))
+      console.log(data.errors)
+      Object.keys(data.errors).forEach(i=>{
+        data.errors[i].forEach(l=>store.dispatch(showAlert(`${i} ${l}`)))
+      })
     } else if(data.user){
       store.dispatch(logIn(data.user))
     }

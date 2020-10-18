@@ -1,32 +1,46 @@
+import { Alert } from '@material-ui/lab';
 import React, { useState } from 'react'
 import { useSelector } from 'react-redux';
+import { useHistory } from 'react-router';
 import { NewArticleService } from '../../services/NewArticleService';
 
 export const AddArticle = () => {
-  const token = useSelector(i=>i.autorize.currentUser.token)
-  const [title, setTitle] = useState(),
-        [about, setAbout] = useState(),
-        [text, setText] = useState(),
-        [tags, setTags] = useState();
+  const token = useSelector(i=>i.autorize.currentUser.token),
+        currentValues = useSelector(i=>i.articles.values),
+        [title, setTitle] = useState(currentValues.title),
+        [about, setAbout] = useState(currentValues.about),
+        [text, setText] = useState(currentValues.text),
+        [tags, setTags] = useState(currentValues.tags),
+        history = useHistory(),
+        error = useSelector(state => state.autorize.errorLogin);
+      const alert = () =>{
+    if(error.length !== 0){
+      return error.map((i, e)=><Alert key={e} variant="outlined" severity="error">{i}</Alert>)
+      }}
+
 
   const submit=(e)=>{
+    let method = 'POST';
+    if(currentValues.title !== ''){
+      method = 'PUT'
+    }
     e.preventDefault()
-    NewArticleService(title, about, text, tags, token)
+    NewArticleService(title, about, text, tags.split(','), token, history, method, currentValues.slug)
   }
-
+  console.log('dasdasdasd,asdsdasd,asdasdasd'.split(','))
   return(
     <div className="container">
       <div className="row">
         <div className="col-md-6 offset-md-3 col-xs-12 add-article">
           <form onSubmit={submit}>
             <h2>New article</h2>
+            {alert()}
             <div className="form-group">
               <label htmlFor="exampleInputEmail1">Article Titile</label>
               <input
                 type="text"
                 className="form-control"
-                id="exampleInputEmail1"
-                aria-describedby="emailHelp"
+                value={title}
                 onChange={(e)=>setTitle(e.target.value)}
               />
             </div>
@@ -35,8 +49,7 @@ export const AddArticle = () => {
               <input
                 type="text"
                 className="form-control"
-                id="exampleInputEmail1"
-                aria-describedby="emailHelp"
+                value={about}
                 onChange={(e)=>setAbout(e.target.value)}
               />
             </div>
@@ -46,8 +59,8 @@ export const AddArticle = () => {
               </label>
               <textarea
                 className="form-control"
-                id="exampleFormControlTextarea1"
                 rows="3"
+                value={text}
                 onChange={(e)=>setText(e.target.value)}
               ></textarea>
             </div>
@@ -56,7 +69,7 @@ export const AddArticle = () => {
               <input
                 type="text"
                 className="form-control"
-                id="exampleInputPassword1"
+                value={tags}
                 onChange={(e)=>setTags(e.target.value)}
               />
             </div>

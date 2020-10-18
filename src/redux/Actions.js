@@ -2,13 +2,12 @@
 import {
   CURRENT_USER,
   LOGIN_DATA,
-  ERROR_LOGIN,
   LOGOUT,
   NEXT_PAGE,
   CURRENT_PROFILE,
   HASHTAG,
   NUMBER_TAB,
-  CURRENT_POSTS, SHOW_ALERT, HIDE_ALERT, CURRENT_POST
+  CURRENT_POSTS, SHOW_ALERT, HIDE_ALERT, CURRENT_POST, EDIT_ARTICLE
 } from "./Types";
 
 export const currentUser = (user) => {
@@ -21,13 +20,6 @@ export const currentUser = (user) => {
 export const logIn = (data) => {
   return {
     type: LOGIN_DATA,
-    data,
-  };
-};
-
-export const errLogIn = (data) => {
-  return {
-    type: ERROR_LOGIN,
     data,
   };
 };
@@ -105,5 +97,12 @@ export function showAlert(text) {
 export function hideAlert() {
   return {
     type: HIDE_ALERT
+  }
+}
+
+export const prevArticleValues = (values) => {
+  return {
+    type: EDIT_ARTICLE,
+    values
   }
 }

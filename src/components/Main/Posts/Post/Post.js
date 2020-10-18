@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import "./Post.scss";
 import 'semantic-ui-css/semantic.min.css'
 import { Button } from 'semantic-ui-react'
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import { connect, useDispatch, useSelector } from "react-redux";
 import { currentPost, currentProfile, currentUrl, hashTag, numberTab } from "../../../../redux/Actions";
 import { Like } from "../../../../services/LikeService";
@@ -16,7 +16,8 @@ import { Like } from "../../../../services/LikeService";
           url = `https://conduit.productionready.io/api/articles/${slug}/favorite`,
           [like, setLike] = useState(data.favorited),
           profileUrl = `https://conduit.productionready.io/api/articles?author=${data.author.username}&limit=10&offset=`,
-          [likeCount, setLikeCount] = useState(data.favoritesCount);
+          [likeCount, setLikeCount] = useState(data.favoritesCount),
+          history = useHistory();
 
 
   const handleClick = (i) => {
@@ -25,16 +26,20 @@ import { Like } from "../../../../services/LikeService";
     dispatch(currentUrl(`https://conduit.productionready.io/api/articles?tag=${i}&limit=10&offset=`))
   };
   const onLike = ()=>{
-    let method;
-    setLike(prev=>!prev)
-    if(like){
-      method='DELETE'
-      setLikeCount(prev=>--prev)
-    } else{
-      method='POST'
-      setLikeCount(prev=>++prev)
+    if(user){
+      let method;
+      setLike(prev=>!prev)
+      if(like){
+        method='DELETE'
+        setLikeCount(prev=>--prev)
+      } else{
+        method='POST'
+        setLikeCount(prev=>++prev)
+      }
+      Like(url,method,user)
+    } else {
+      history.push('/signIn')
     }
-    Like(url,method,user)
   }
 
   const color = ()=>like?'red':'grey'

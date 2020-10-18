@@ -1,7 +1,8 @@
+import { Alert } from "@material-ui/lab";
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router";
-import { logOut } from "../../redux/Actions";
+import { currentUrl, logOut, numberTab } from "../../redux/Actions";
 import { NewSettings } from "../../services/SettingsService";
 import "./YSettings.scss";
 
@@ -10,30 +11,37 @@ export const YSettings = () => {
   const dispatch = useDispatch(),
         history = useHistory(),
         state = useSelector(i=>i.autorize.currentUser),
+        error = useSelector(state => state.autorize.errorLogin),
         [img, setImg] = useState(),
-        [name, setName] = useState(),
+        [name, setName] = useState(state.username),
         [bio, setBio] = useState(),
-        [email, setEmail] = useState(),
-        [pass, setPass] = useState();
-  const log = () => {
-    sessionStorage.removeItem('account')
-    dispatch(logOut())
-  }
+        [email, setEmail] = useState(state.email),
+        [pass, setPass] = useState(),
+        url = 'https://conduit.productionready.io/api/articles?limit=10&offset=';
+
   const out = () => {
-    log()
+    dispatch(logOut())
     history.push('/')
+    localStorage.removeItem('account')
+    dispatch(numberTab(1));
+    dispatch(currentUrl(url))
   }
+  const alert = () =>{
+    if(error.length !== 0){
+      return error.map((i, e)=><Alert key={e} variant="outlined" severity="error">{i}</Alert>)
+      }}
+
   const submit=(e)=>{
     e.preventDefault()
     NewSettings(img, name, bio, email, pass, state)
   }
-
   return (
     <div className="container">
       <div className="row">
         <div className="col-md-6 offset-md-3 col-xs-12 settings">
           <form onSubmit={submit}>
             <h2>Your Settings</h2>
+            {alert()}
             <div className="form-group">
               <label htmlFor="exampleInputEmail1">URL of profile picture</label>
               <input
@@ -51,7 +59,7 @@ export const YSettings = () => {
                 className="form-control"
                 id="exampleInput3"
                 aria-describedby="emailHelp"
-                // formControlName={state.username}
+                value={name}
                 onChange={(e)=>setName(e.target.value)}
               />
             </div>
@@ -72,7 +80,7 @@ export const YSettings = () => {
                 type="email"
                 className="form-control"
                 id="exampleInputPassword1"
-
+                value={email}
                 onChange={(e)=>setEmail(e.target.value)}
               />
             </div>

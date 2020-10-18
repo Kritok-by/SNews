@@ -1,5 +1,5 @@
 import { store } from "..";
-import { errLogIn, logIn } from "../redux/Actions";
+import { errLogIn, logIn, showAlert } from "../redux/Actions";
 
 export const NewSettings = async (img = '', name = '', bio = '', email = '', pass = '', state) => {
   const url = "https://conduit.productionready.io/api/user";
@@ -26,7 +26,10 @@ export const NewSettings = async (img = '', name = '', bio = '', email = '', pas
     .then((res) => res.json())
     .then((data) => {
       if (data.errors) {
-        store.dispatch(errLogIn(Object.entries(data.errors)))
+        console.log(data)
+        Object.keys(data.errors).forEach(i=>{
+          data.errors[i].forEach(l=>store.dispatch(showAlert(`${i} ${l}`)))
+        })
       } else if (data.user) {
         console.log(data);
         store.dispatch(logIn(data.user))

@@ -35,19 +35,22 @@ export const PostService = () => {
           </Async.Pending>
           <Async.Fulfilled>
             {(data) =>{
-              return (
-                <>
-                {data.articles.map((i, ind) => {
-                  return <Post data={i} key={ind} />
-                })}
-                <Pagination
-              count={data.articlesCount/10}
-              shape="rounded"
-              page={page}
-              onChange={(e, value) => setPage(value)}
-            />
-                </>
-              )}
+              if(data.articlesCount!== 0){
+                return (
+                  <>
+                  {data.articles.map((i, ind) => {
+                    return <Post data={i} key={ind} />
+                  })}
+                  <Pagination
+                count={Math.ceil(data.articlesCount/10)}
+                shape="rounded"
+                page={page+1}
+                onChange={(e, value) => setPage(value-1)}
+              />
+                  </>
+                )}
+                return <h3>Articles nit yet...</h3>
+              }
             }
           </Async.Fulfilled>
           <Async.Rejected>{(error) => <p>{error.message}</p>}</Async.Rejected>
