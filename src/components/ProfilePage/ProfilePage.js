@@ -33,6 +33,7 @@ export const ProfilePage = ({data}) => {
     }
     Like(followUrl,method,user)
   }
+
   return(
     <article className='profile'>
       <div className="header-block">

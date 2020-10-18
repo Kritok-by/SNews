@@ -2,7 +2,7 @@ import { Avatar, Chip } from "@material-ui/core";
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router";
-import { prevArticleValues } from "../../redux/Actions";
+import { currentProfile, currentUrl, prevArticleValues } from "../../redux/Actions";
 import { deleteArticle } from "../../services/deleteArticle";
 import { Like } from "../../services/LikeService";
 import "./ArticlePage.scss";
@@ -16,6 +16,7 @@ export const ArticlePage = ({ state }) => {
     slug = state.slug,
     dispatch = useDispatch(),
     history = useHistory(),
+    profileUrl = `https://conduit.productionready.io/api/articles?author=${athor}&limit=10&offset=`,
     likeUrl = `https://conduit.productionready.io/api/articles/${slug}/favorite`,
     followUrl = `https://conduit.productionready.io/api/profiles/${athor}/follow`,
     [likeCount, setLikeCount] = useState(state.favoritesCount);
@@ -79,14 +80,18 @@ export const ArticlePage = ({ state }) => {
       );
     }
   };
-  console.log(state);
+  const linkProfile = ()=>{
+    dispatch(currentProfile(athor))
+    dispatch(currentUrl(profileUrl))
+    history.push(`/profile/${athor}`)
+  }
   return (
     <article className="article-page">
       <div className="container ">
         <div className="who">
           <Avatar alt="user" src={state.author.image} />
           <div className="info">
-            <span className="userN">{state.author.username}</span>
+            <span className="userN" onClick={linkProfile}>{athor}</span>
             <span className="date">
               {new Date(state.updatedAt).toLocaleDateString()}
             </span>
