@@ -3,6 +3,7 @@ import React from 'react'
 export const MainHeader = () => {
   const date = new Date(),
       days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+      console.log(date)
   return(
     <div className="prewiew-block center">
         <div className="main-logo">

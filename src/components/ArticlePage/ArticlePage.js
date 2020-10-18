@@ -85,6 +85,11 @@ export const ArticlePage = ({ state }) => {
     dispatch(currentUrl(profileUrl))
     history.push(`/profile/${athor}`)
   }
+
+  const thisDate = () => {
+    const date = new Date(state.updatedAt)
+    return `${date.getDate()} ${date.toLocaleString('en', { month: 'long' })} ${date.getFullYear()}`
+  }
   return (
     <article className="article-page">
       <div className="container ">
@@ -93,7 +98,7 @@ export const ArticlePage = ({ state }) => {
           <div className="info">
             <span className="userN" onClick={linkProfile}>{athor}</span>
             <span className="date">
-              {new Date(state.updatedAt).toLocaleDateString()}
+              {thisDate()}
             </span>
           </div>
         </div>

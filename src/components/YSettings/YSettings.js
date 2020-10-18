@@ -43,53 +43,48 @@ export const YSettings = () => {
             <h2>Your Settings</h2>
             {alert()}
             <div className="form-group">
-              <label htmlFor="exampleInputEmail1">URL of profile picture</label>
+              <label>URL of profile picture</label>
               <input
                 type="text"
                 className="form-control"
-                id="exampleInputEma"
                 aria-describedby="emailHelp"
                 onChange={(e)=>setImg(e.target.value)}
               />
             </div>
             <div className="form-group">
-              <label htmlFor="exampleInputEmail1">New username</label>
+              <label>New username</label>
               <input
                 type="text"
                 className="form-control"
-                id="exampleInput3"
                 aria-describedby="emailHelp"
                 value={name}
                 onChange={(e)=>setName(e.target.value)}
               />
             </div>
             <div className="form-group">
-              <label htmlFor="exampleFormControlTextarea1">
+              <label>
                 Short bio about you
               </label>
               <textarea
                 className="form-control"
-                id="exampleFormControlTextarea1"
                 rows="3"
                 onChange={(e)=>setBio(e.target.value)}
               ></textarea>
             </div>
             <div className="form-group">
-              <label htmlFor="exampleInputPassword1">New email</label>
+              <label>New email</label>
               <input
                 type="email"
                 className="form-control"
-                id="exampleInputPassword1"
                 value={email}
                 onChange={(e)=>setEmail(e.target.value)}
               />
             </div>
             <div className="form-group">
-              <label htmlFor="exampleInputPassword1">New password</label>
+              <label>New password</label>
               <input
                 type="password"
                 className="form-control"
-                id="exampleInputPassword1"
                 onChange={(e)=>setPass(e.target.value)}
               />
             </div>

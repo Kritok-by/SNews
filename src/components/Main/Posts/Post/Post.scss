@@ -16,14 +16,6 @@
     .who{
       display: flex;
       align-items: center;
-      img{
-        cursor:pointer;
-        transition: 170ms ease;
-        &:hover{
-          border: 2px solid #be0016;
-          border-radius: 50%;
-        }
-      }
       span{
         cursor:pointer;
         margin-left: 10px;

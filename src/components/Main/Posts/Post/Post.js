@@ -48,7 +48,11 @@ import { Like } from "../../../../services/LikeService";
     dispatch(currentProfile(data.author.username))
     dispatch(currentUrl(profileUrl))
   }
-
+  const thisDate = () => {
+    const date = new Date(data.createdAt)
+    return `${date.getDate()} ${date.toLocaleString('en', { month: 'long' })} ${date.getFullYear()}`
+  }
+  console.log(new Date(data.createdAt))
   return (
     <div className="post">
       <div className="who-when">
@@ -56,7 +60,7 @@ import { Like } from "../../../../services/LikeService";
           <Avatar alt="user" src={data.author.image} />
           <Link to={`/profile/${data.author.username}`} ><span className="userN" onClick={linkProfile}>{data.author.username}</span></Link>
         </div>
-        <span className="when">{new Date(data.createdAt).toLocaleDateString()}</span>
+        <span className="when">{thisDate()}</span>
       </div>
       <hr />
       <Link to={`/post/${slug}`}><div className="about-post" onClick={()=>dispatch(currentPost(slug))}>

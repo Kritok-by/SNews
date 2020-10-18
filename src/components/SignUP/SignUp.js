@@ -37,31 +37,28 @@ export const SignUp = () => {
           <Link to='/signIn'><span className="to-sign-up">Have an account?</span></Link>
           {alert()}
           <div className="form-group">
-            <label htmlFor="exampleInputEmail2">Username</label>
+            <label>Username</label>
             <input
               type="text"
               className="form-control"
-              id="exampleInputEmail2"
               aria-describedby="emailHelp"
               onChange={e => setUser(e.target.value)}
             />
           </div>
           <div className="form-group">
-            <label htmlFor="exampleInputEmail3">Email</label>
+            <label>Email</label>
             <input
               type="email"
               className="form-control"
-              id="exampleInputEmail3"
               aria-describedby="emailHelp"
               onChange={e => setMail(e.target.value)}
             />
           </div>
           <div className="form-group">
-            <label htmlFor="exampleInputPassword2">Password</label>
+            <label>Password</label>
             <input
               type="password"
               className="form-control"
-              id="exampleInputPassword2"
               onChange={e => setPass(e.target.value)}
             />
           </div>

@@ -36,7 +36,7 @@ export const AddArticle = () => {
             <h2>New article</h2>
             {alert()}
             <div className="form-group">
-              <label htmlFor="exampleInputEmail1">Article Titile</label>
+              <label>Article Titile</label>
               <input
                 type="text"
                 className="form-control"
@@ -45,7 +45,7 @@ export const AddArticle = () => {
               />
             </div>
             <div className="form-group">
-              <label htmlFor="exampleInputEmail1">What's is article about</label>
+              <label>What's is article about</label>
               <input
                 type="text"
                 className="form-control"
@@ -54,7 +54,7 @@ export const AddArticle = () => {
               />
             </div>
             <div className="form-group">
-              <label htmlFor="exampleFormControlTextarea1">
+              <label>
                 Write your article (in markdown)
               </label>
               <textarea
@@ -65,7 +65,7 @@ export const AddArticle = () => {
               ></textarea>
             </div>
             <div className="form-group">
-              <label htmlFor="exampleInputPassword1">Enter tags</label>
+              <label>Enter tags</label>
               <input
                 type="text"
                 className="form-control"

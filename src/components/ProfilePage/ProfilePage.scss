@@ -1,6 +1,20 @@
-.profile{
+.profile {
   padding: 100px 0;
-  .header-block{
-
+  font-family: "Noto Sans JP", sans-serif;
+  .MuiChip-root {
+    margin: 2px;
+    border-radius: 0.28571429rem;
+    height: auto;
+    border: 1px solid rgba(0, 0, 0, 0.23);
+    background-color: transparent;
+    cursor: pointer;
+    transition: 170ms ease;
+    padding: 2px;
+    font-size: 14px;
+    &:hover {
+      color: #be0016;
+      border-color: #be0016;
+      background-color: rgba(0, 0, 0, 0.04);
+    }
   }
 }

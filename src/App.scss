@@ -15,6 +15,20 @@
 .wrapper{
   color: #444;
 }
+.MuiButtonBase-root.MuiChip-root.MuiChip-clickable{
+  margin: 2px;
+  border-radius: 4px;
+  height: auto;
+  border: 1px solid rgba(0, 0, 0, 0.23);
+  background-color: transparent;
+  cursor: pointer;
+  transition: 170ms ease;
+  &:hover{
+    color: #be0016;
+    border-color: #be0016;
+    background-color: rgba(0, 0, 0, 0.04);
+  }
+}
     .center{
       max-width: 1140px;
       margin: 0 auto;
