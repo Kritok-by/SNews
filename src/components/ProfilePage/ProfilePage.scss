@@ -1,20 +1,44 @@
 .profile {
   padding: 100px 0;
   font-family: "Noto Sans JP", sans-serif;
-  .MuiChip-root {
-    margin: 2px;
-    border-radius: 0.28571429rem;
-    height: auto;
-    border: 1px solid rgba(0, 0, 0, 0.23);
-    background-color: transparent;
-    cursor: pointer;
-    transition: 170ms ease;
-    padding: 2px;
-    font-size: 14px;
-    &:hover {
-      color: #be0016;
-      border-color: #be0016;
-      background-color: rgba(0, 0, 0, 0.04);
+  .header-block{
+    .center{
+
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      flex-wrap: wrap;
+      .MuiAvatar-root{
+        display: flex;
+        text-align: center;
+        margin: 0 auto;
+        justify-content: center;
+        height: 60px;
+        min-width: 60px;
+        img{
+          width: auto;
+        }
+      }
+      h2{
+        flex-basis: 100%;
+        text-align: center;
+      }
+      .MuiChip-root {
+        margin: 2px;
+        border-radius: 0.28571429rem;
+        height: auto;
+        border: 1px solid rgba(0, 0, 0, 0.23);
+        background-color: transparent;
+        cursor: pointer;
+        transition: 170ms ease;
+        padding: 2px;
+        font-size: 14px;
+        &:hover {
+          color: #be0016;
+          border-color: #be0016;
+          background-color: rgba(0, 0, 0, 0.04);
+        }
+      }
     }
   }
 }

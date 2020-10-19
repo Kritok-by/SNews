@@ -1,21 +1,23 @@
-*{
+* {
   margin: 0;
   padding: 0;
   border: none;
   list-style-type: none;
-  a{
+  word-break: break-word;
+  a {
     text-decoration: none;
     color: #444;
-    &:hover, &:focus{
+    &:hover,
+    &:focus {
       text-decoration: none;
     }
   }
 }
 
-.wrapper{
+.wrapper {
   color: #444;
 }
-.MuiButtonBase-root.MuiChip-root.MuiChip-clickable{
+.MuiButtonBase-root.MuiChip-root.MuiChip-clickable, .MuiChip-root{
   margin: 2px;
   border-radius: 4px;
   height: auto;
@@ -23,13 +25,19 @@
   background-color: transparent;
   cursor: pointer;
   transition: 170ms ease;
-  &:hover{
+  i.MuiChip-icon{
+    color: #444;
+  }
+  &:hover {
     color: #be0016;
     border-color: #be0016;
     background-color: rgba(0, 0, 0, 0.04);
+    i.MuiChip-icon{
+      color: #be0016;
+    }
   }
 }
-    .center{
-      max-width: 1140px;
-      margin: 0 auto;
-    }
+.center {
+  max-width: 1140px;
+  margin: 0 auto;
+}

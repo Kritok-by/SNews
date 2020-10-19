@@ -12,7 +12,7 @@ const ProfilePostService = () => {
   const header = () => {
     if (token) {
       return {
-        Authorization: `Token ${token}`,
+        "Authorization": `Token ${token}`,
         "Content-Type": "application/json; charset=utf-8",
       };
     }
@@ -44,7 +44,10 @@ const ProfilePostService = () => {
                   count={Math.ceil(data.articlesCount / 10)}
                   shape="rounded"
                   page={page + 1}
-                  onChange={(e, value) => setPage(value - 1)}
+                  onChange={(e, value) =>{
+                    setPage(value - 1)
+                    window.scrollTo(0, 0)
+                  }}
                 />
               </>
             );

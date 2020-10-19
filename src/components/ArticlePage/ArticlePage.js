@@ -22,6 +22,9 @@ export const ArticlePage = ({ state }) => {
     [likeCount, setLikeCount] = useState(state.favoritesCount);
 
   const onLike = () => {
+    if(!currentUser){
+      history.push('/signIn')}
+      else{
     let method;
     setLike((prev) => !prev);
     if (like) {
@@ -31,7 +34,7 @@ export const ArticlePage = ({ state }) => {
       method = "POST";
       setLikeCount((prev) => ++prev);
     }
-    Like(likeUrl, method, user);
+    Like(likeUrl, method, user);}
   };
   const onDelete = () => {
     deleteArticle(slug, user)
@@ -47,6 +50,9 @@ export const ArticlePage = ({ state }) => {
       slug: slug}))
   };
   const onFollow = () => {
+    if(!currentUser){
+      history.push('/signIn')}
+      else{
     let method;
     setFollow((prev) => !prev);
     if (follow) {
@@ -54,21 +60,21 @@ export const ArticlePage = ({ state }) => {
     } else {
       method = "POST";
     }
-    Like(followUrl, method, user);
+    Like(followUrl, method, user);}
   };
   const ifFollow = () => {
     if (follow) {
-      return <Chip label="Unfollow" onClick={onFollow} />;
+      return <Chip icon={<i className="fas fa-minus"/>} label="Unfollow" onClick={onFollow} />;
     }
-    return <Chip label="Follow" onClick={onFollow} />;
+    return <Chip icon={<i className="fas fa-plus"/>} label="Follow" onClick={onFollow} />;
   };
 
   const ifAutorize = () => {
     if (currentUser === athor) {
       return (
         <div className="buttons">
-          <Chip label="Edit Article" onClick={onEdit} />
-          <Chip label="Delete Article" onClick={onDelete} />
+          <Chip icon={<i className="fas fa-pen"/>} label="Edit Article" onClick={onEdit} />
+          <Chip icon={<i className="far fa-trash-alt"/>} label="Delete Article" onClick={onDelete} />
         </div>
       );
     } else {
@@ -80,6 +86,7 @@ export const ArticlePage = ({ state }) => {
       );
     }
   };
+  console.log(!currentUser)
   const linkProfile = ()=>{
     dispatch(currentProfile(athor))
     dispatch(currentUrl(profileUrl))

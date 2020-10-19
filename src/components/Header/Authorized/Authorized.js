@@ -28,8 +28,8 @@ export default function Authorized() {
   return(
     <nav className="header-nav">
       <ul>
-       <Link to='/new-post'> <li onClick={toDefoltValues}>New Post</li></Link>
-       <Link to='/settings'> <li>Settings</li></Link>
+       <Link to='/new-post'> <li onClick={toDefoltValues}><i className="far fa-edit"/>New Post</li></Link>
+       <Link to='/settings'><li><i className="fas fa-cog"/> Settings</li></Link>
        <Link to={`/profile/${userName}`} onClick={linkProfile}><li><Avatar alt="user" src={img}/>{userName}</li></Link>
       </ul>
     </nav>

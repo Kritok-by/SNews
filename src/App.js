@@ -12,6 +12,7 @@ import { LoginPost } from './services/LoginService';
 import { ProfilePageService } from './services/ProfilePageService';
 import { ArticlePageService } from './services/ArticlePageService';
 import { useSelector } from 'react-redux';
+import ScrollToTop from './ScrollToTop';
 
 function App() {
   const user = useSelector(i=>i.autorize.currentUser.username)
@@ -27,15 +28,16 @@ function App() {
     <div className="wrapper">
       <Router>
         <Header/>
-        <Switch>
-          <Route exact path="/" component={Main} />
-          <Route exact path="/signIn" component={SignIn} />
-          <Route exact path="/register" component={SignUp} />
-          <Route exact path="/settings" component={YSettings} />
-          <Route exact path="/new-post" component={AddArticle} />
-          <Route exact path="/post/:article?" component={ArticlePageService} />
-          <Route exact path='/profile/:user?' component={ProfilePageService} />
-        </Switch>
+        <ScrollToTop/>
+          <Switch>
+            <Route exact path="/" component={Main} />
+            <Route exact path="/signIn" component={SignIn} />
+            <Route exact path="/register" component={SignUp} />
+            <Route exact path="/settings" component={YSettings} />
+            <Route exact path="/new-post" component={AddArticle} />
+            <Route exact path="/post/:article?" component={ArticlePageService} />
+            <Route exact path='/profile/:user?' component={ProfilePageService} />
+          </Switch>
       </Router>
     </div>
   );

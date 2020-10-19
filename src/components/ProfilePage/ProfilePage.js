@@ -4,28 +4,32 @@ import "./ProfilePage.scss";
 import { useSelector } from "react-redux";
 import { Like } from "../../services/LikeService";
 import ProfilePosts from "./ProfilePosts/ProfilePosts";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 
 export const ProfilePage = ({ data }) => {
   const currentUser = useSelector((i) => i.autorize.currentUser.username),
     [follow, setFollow] = useState(data.following),
     user = useSelector((i) => i.autorize.currentUser.token),
+    history = useHistory(),
     followUrl = `https://conduit.productionready.io/api/profiles/${data.username}/follow`;
 
   const buttons = () => {
     if (currentUser === data.username) {
       return (
         <Link to="/settings">
-          <Chip label="Settings profile" />
+          <Chip icon={<i className="fas fa-cog"/>} label="Settings profile" />
         </Link>
       );
     }
     if (follow) {
-      return <Chip label="Unfollow" onClick={onFollow} />;
+      return <Chip icon={<i className="fas fa-minus"/>} label="Unfollow" onClick={onFollow} />;
     }
-    return <Chip label="Follow" onClick={onFollow} />;
+    return <Chip icon={<i className="fas fa-plus"/>} label="Follow" onClick={onFollow} />;
   };
   const onFollow = () => {
+    if(!currentUser){
+      history.push('/signIn')}
+      else{
     let method;
     setFollow((prev) => !prev);
     if (follow) {
@@ -33,7 +37,7 @@ export const ProfilePage = ({ data }) => {
     } else {
       method = "POST";
     }
-    Like(followUrl, method, user);
+    Like(followUrl, method, user);}
   };
   return (
     <article className="profile">

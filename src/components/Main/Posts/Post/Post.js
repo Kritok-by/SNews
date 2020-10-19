@@ -52,7 +52,6 @@ import { Like } from "../../../../services/LikeService";
     const date = new Date(data.createdAt)
     return `${date.getDate()} ${date.toLocaleString('en', { month: 'long' })} ${date.getFullYear()}`
   }
-  console.log(new Date(data.createdAt))
   return (
     <div className="post">
       <div className="who-when">

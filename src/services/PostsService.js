@@ -45,11 +45,14 @@ export const PostService = () => {
                 count={Math.ceil(data.articlesCount/10)}
                 shape="rounded"
                 page={page+1}
-                onChange={(e, value) => setPage(value-1)}
+                onChange={(e, value) =>{
+                  setPage(value-1)
+                  window.scrollTo(0, 0)
+                } }
               />
                   </>
                 )}
-                return <h3>Articles nit yet...</h3>
+                return <h3>Articles not yet...</h3>
               }
             }
           </Async.Fulfilled>
