@@ -23,7 +23,7 @@ export const PostService = () => {
   const [page, setPage] = useState(0),
           url = useSelector(i=>i.articles.url);
   const loadPosts = () =>
-    fetch(`${url}${page}`,{
+    fetch(`${url}${page*10}`,{
       headers: header()
     })
       .then(res => (res.ok ? res : Promise.reject(res)))
