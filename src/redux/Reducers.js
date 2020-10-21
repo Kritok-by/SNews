@@ -1,6 +1,17 @@
-import { combineReducers } from "redux";
-import {LOGOUT , LOGIN_DATA, NEXT_PAGE, CURRENT_PROFILE, HASHTAG, NUMBER_TAB, CURRENT_POSTS, CURRENT_POST, SHOW_ALERT, HIDE_ALERT, EDIT_ARTICLE} from "./Types";
-
+import { combineReducers } from 'redux';
+import {
+  LOGOUT,
+  LOGIN_DATA,
+  NEXT_PAGE,
+  CURRENT_PROFILE,
+  HASHTAG,
+  NUMBER_TAB,
+  CURRENT_POSTS,
+  CURRENT_POST,
+  SHOW_ALERT,
+  HIDE_ALERT,
+  EDIT_ARTICLE,
+} from './Types';
 
 const defState = {
   currentUser: {},
@@ -17,58 +28,57 @@ const defState = {
     about: '',
     text: '',
     tags: [],
-    slug: ''
-  }
-}
+    slug: '',
+  },
+};
 
 const autorize = (state = defState, action) => {
-  switch (action.type){
+  switch (action.type) {
     case LOGIN_DATA:
-      return{...state, currentUser: action.data}
+      return { ...state, currentUser: action.data };
     case LOGOUT:
-      return {...state, currentUser: {}}
+      return { ...state, currentUser: {} };
     case SHOW_ALERT:
-      return {...state, errorLogin: state.errorLogin.concat(action.payload)}
+      return { ...state, errorLogin: state.errorLogin.concat(action.payload) };
     case HIDE_ALERT:
-      return {...state, errorLogin: []}
+      return { ...state, errorLogin: [] };
     default:
-      return state
+      return state;
   }
-}
+};
 
 const profile = (state = defState, action) => {
-  switch(action.type){
+  switch (action.type) {
     case CURRENT_PROFILE:
-      return {...state, profile: action.user}
+      return { ...state, profile: action.user };
     default:
-      return state
+      return state;
   }
-}
+};
 
-const articles = (state = defState, action)=>{
-  switch (action.type){
+const articles = (state = defState, action) => {
+  switch (action.type) {
     case NEXT_PAGE:
-      return {...state, page: action.num}
-      case HASHTAG:
-        return {...state, hashTag: action.tag}
-      case NUMBER_TAB:
-        return {...state, numberTab: action.num}
-      case CURRENT_POSTS:
-        return {...state, posts: {...action.data}}
-      case URL:
-        return {...state, url: action.url}
-      case CURRENT_POST:
-        return {...state, slug: action.slug}
-      case EDIT_ARTICLE:
-        return {...state, values: {...action.values}}
+      return { ...state, page: action.num };
+    case HASHTAG:
+      return { ...state, hashTag: action.tag };
+    case NUMBER_TAB:
+      return { ...state, numberTab: action.num };
+    case CURRENT_POSTS:
+      return { ...state, posts: { ...action.data } };
+    case URL:
+      return { ...state, url: action.url };
+    case CURRENT_POST:
+      return { ...state, slug: action.slug };
+    case EDIT_ARTICLE:
+      return { ...state, values: { ...action.values } };
     default:
-      return state
+      return state;
   }
-}
-
+};
 
 export const Reducers = combineReducers({
   autorize: autorize,
   articles: articles,
   profile: profile,
-})
+});

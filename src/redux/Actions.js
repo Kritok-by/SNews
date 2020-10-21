@@ -1,21 +1,16 @@
-
 import {
-  CURRENT_USER,
   LOGIN_DATA,
   LOGOUT,
   NEXT_PAGE,
   CURRENT_PROFILE,
   HASHTAG,
   NUMBER_TAB,
-  CURRENT_POSTS, SHOW_ALERT, HIDE_ALERT, CURRENT_POST, EDIT_ARTICLE
-} from "./Types";
-
-export const currentUser = (user) => {
-  return {
-    type: CURRENT_USER,
-    user,
-  };
-};
+  CURRENT_POSTS,
+  SHOW_ALERT,
+  HIDE_ALERT,
+  CURRENT_POST,
+  EDIT_ARTICLE,
+} from './Types';
 
 export const logIn = (data) => {
   return {
@@ -47,11 +42,9 @@ export const currentProfile = (user) => {
 export const currentPost = (slug) => {
   return {
     type: CURRENT_POST,
-    slug
-  }
-
-}
-
+    slug,
+  };
+};
 
 export const hashTag = (tag) => {
   return {
@@ -68,9 +61,9 @@ export const numberTab = (num) => {
 };
 
 export const currentPosts = (data) => {
-  return dispatch=>{
-    dispatch({ type: CURRENT_POSTS, data })
-  }
+  return (dispatch) => {
+    dispatch({ type: CURRENT_POSTS, data });
+  };
 };
 
 export const currentUrl = (url) => {
@@ -80,29 +73,28 @@ export const currentUrl = (url) => {
   };
 };
 
-
 export function showAlert(text) {
-  return dispatch => {
+  return (dispatch) => {
     dispatch({
       type: SHOW_ALERT,
-      payload: text
-    })
+      payload: text,
+    });
 
     setTimeout(() => {
-      dispatch(hideAlert())
-    }, 3000)
-  }
+      dispatch(hideAlert());
+    }, 3000);
+  };
 }
 
 export function hideAlert() {
   return {
-    type: HIDE_ALERT
-  }
+    type: HIDE_ALERT,
+  };
 }
 
 export const prevArticleValues = (values) => {
   return {
     type: EDIT_ARTICLE,
-    values
-  }
-}
+    values,
+  };
+};
