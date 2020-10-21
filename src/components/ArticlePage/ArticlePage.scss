@@ -25,14 +25,39 @@
       }
     }
   }
-  .buttons {
+  .other {
+    align-items: flex-end;
     display: flex;
-    align-items: center;
-    div {
-      margin-left: 10px;
+    justify-content: flex-end;
+    .buttons {
+      align-items: flex-end;
+      display: flex;
+      justify-content: flex-end;
+      div {
+        margin-left: 10px;
+      }
     }
   }
   .header-article {
     padding: 20px 0;
+  }
+}
+
+@media (max-width: 766px) {
+  .article-page {
+    padding: 60px 0;
+    .who {
+      .info {
+        .userN {
+          font-size: 12px;
+        }
+        .date {
+          font-size: 10px;
+        }
+      }
+    }
+    hr {
+      margin-top: 0;
+    }
   }
 }

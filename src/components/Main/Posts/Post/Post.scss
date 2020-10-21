@@ -1,65 +1,70 @@
-.post{
+.post {
   border-radius: 4px;
-  transition: box-shadow 170ms ease,-webkit-box-shadow 170ms ease;
+  transition: box-shadow 170ms ease;
   padding: 10px;
   margin: 15px 0;
   background-color: rgba(100, 100, 100, 0.06);
-  &:hover{
+  &:hover {
     box-shadow: rgba(0, 0, 0, 0.2) 0px 3px 1px -2px,
-    rgba(0, 0, 0, 0.14) 0px 2px 2px 0px, rgba(0, 0, 0, 0.12) 0px 1px 5px 0px;
+      rgba(0, 0, 0, 0.14) 0px 2px 2px 0px, rgba(0, 0, 0, 0.12) 0px 1px 5px 0px;
   }
-  .who-when{
+  .who-when {
     display: flex;
     justify-content: space-between;
     align-items: center;
     margin-bottom: 10px;
-    .who{
+    .who {
       display: flex;
       align-items: center;
-      span{
-        cursor:pointer;
+      span {
+        cursor: pointer;
         margin-left: 10px;
         font-size: 18px;
         transition: 170ms ease;
         border-bottom: 1px solid rgba(100, 100, 100, 0.06);
-        &:hover{
+        &:hover {
           color: #be0016;
           border-bottom: 1px solid #be0016;
         }
       }
     }
   }
-  .about-post{
+  .about-post {
     cursor: pointer;
     padding: 10px;
-    h3{
+    h3 {
       color: #000;
       margin-bottom: 20px;
     }
-    a{
+    a {
       text-decoration: none;
     }
   }
-  .more-buttons{
+  .more-buttons {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    span{
+    .chips {
+      max-width: 65%;
+    }
+    span {
       cursor: pointer;
       transition: 170ms ease;
-      &:hover{
+      &:hover {
         color: #be0016;
       }
     }
-    .MuiButtonBase-root{
+    .MuiButtonBase-root {
       margin: 2px;
-      border-radius: .28571429rem;
+      border-radius: 4px;
+      max-width: 100%;
       height: auto;
     }
-    .ui.left.labeled.button{
+    .ui.left.labeled.button {
       height: 25px;
       margin-left: 30px;
-      button, a{
+      button,
+      a {
         padding-top: 4px;
         padding-bottom: 4px;
       }

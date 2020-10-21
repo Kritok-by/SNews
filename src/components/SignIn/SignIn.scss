@@ -1,38 +1,50 @@
-.sign-in,.settings, .sign-up, .add-article {
+.sign-in,
+.settings,
+.sign-up,
+.add-article {
   padding: 30px 0;
-  font-family: "Noto Sans JP", sans-serif;
+  font-family: 'Noto Sans JP', sans-serif;
   margin-top: 60px;
-  h2{
+  h2 {
     text-align: center;
     color: #000;
   }
-  .to-sign-up{
+  .to-sign-up {
     display: block;
     text-align: center;
     color: #be0016;
     cursor: pointer;
-    transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
-    &:hover{
+    transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+    &:hover {
       color: #444;
     }
   }
-  label{
+  label {
     color: #000;
   }
-  .form-control{
+  .form-control {
     border-radius: 4px;
-    &:focus{
+    &:focus {
       border-color: #be0016;
       outline: 0;
-      box-shadow: 0 0 0 0.2rem rgba(190, 0, 22, .25);
+      box-shadow: 0 0 0 0.2rem rgba(190, 0, 22, 0.25);
     }
   }
-  .btn-danger{
+  .btn-danger {
     background-color: #be0016;
     border-color: #be0016;
-    &:hover, &:focus{
+    &:hover,
+    &:focus {
       background: none;
       color: #be0016;
     }
+  }
+}
+
+@media (max-width: 574px) {
+  .col-md-6 {
+    width: 95%;
+    margin: 0 auto;
+    padding: 60px 0;
   }
 }

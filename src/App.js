@@ -12,7 +12,6 @@ import { LoginPost } from './services/LoginService';
 import { ProfilePageService } from './services/ProfilePageService';
 import { ArticlePageService } from './services/ArticlePageService';
 import { useSelector } from 'react-redux';
-import ScrollToTop from './ScrollToTop';
 
 function App() {
   const user = useSelector(i=>i.autorize.currentUser.username)
@@ -28,7 +27,6 @@ function App() {
     <div className="wrapper">
       <Router>
         <Header/>
-        <ScrollToTop/>
           <Switch>
             <Route exact path="/" component={Main} />
             <Route exact path="/signIn" component={SignIn} />

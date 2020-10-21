@@ -1,49 +1,92 @@
-
-.header-block{
-  box-shadow: 0 5px 5px rgba(0,0,0,0.05);
-  font-family: "Georgia", serif;
-.prewiew-block {
-  display: flex;
-  justify-content: space-between;
-  font-weight: 400;
-  font-size: 16px;
-  padding-top: 80px;
-  padding-bottom: 40px;
-  .main-logo {
-    width: 200px;
-    img {
-      max-width: 100%;
-      height: auto;
+.header-block {
+  box-shadow: 0 5px 5px rgba(0, 0, 0, 0.05);
+  font-family: 'Georgia', serif;
+  .prewiew-block {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-weight: 400;
+    font-size: 16px;
+    padding-top: 80px;
+    padding-bottom: 40px;
+    .main-logo {
+      width: 200px;
+      img {
+        max-width: 100%;
+        height: auto;
+      }
     }
-  }
-  .now {
-    .date {
-      display: inline-block;
-      padding-bottom: 7px;
-      border-bottom: 1px solid #000;
-    }
-    .socials {
-      display: flex;
-      justify-content: space-around;
-      width: 100%;
-      padding-top: 7px;
-      a {
-        color: #000;
-        width: 30px;
-        height: 30px;
-        line-height: 30px;
-        font-size: 20px;
-        transition: all ease-in-out 0.4s;
-        &:hover {
-          color: #be0016;
+    .now {
+      .date {
+        display: inline-block;
+        padding-bottom: 7px;
+        border-bottom: 1px solid #000;
+      }
+      .socials {
+        display: flex;
+        justify-content: space-around;
+        width: 100%;
+        padding-top: 7px;
+        a {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          color: #000;
+          width: 30px;
+          height: 30px;
+          line-height: 30px;
+          font-size: 20px;
+          transition: all ease-in-out 0.4s;
+          &:hover {
+            color: #be0016;
+          }
         }
       }
     }
   }
 }
+
+.main-container {
+  font-family: 'Noto Sans JP', sans-serif;
+  padding-top: 30px;
+}
+@media (min-width: 768px) {
+  .container.main-container {
+    max-width: none;
+  }
+}
+@media (min-width: 992px) {
+  .container.main-container {
+    max-width: 960px;
+  }
 }
 
-.main-container{
-  font-family: "Noto Sans JP", sans-serif;
-  padding-top: 30px;
+@media (max-width: 1200px) {
+  .prewiew-block {
+    padding: 0 2.5%;
+  }
+}
+
+@media (max-width: 768px) {
+  .container.main-container {
+    margin: 0 auto;
+    max-width: none;
+    .col-md-3 {
+      display: none;
+    }
+  }
+}
+
+@media (max-width: 600px) {
+  .header-block {
+    .prewiew-block {
+      padding-bottom: 20px;
+      .main-logo {
+        width: 45%;
+      }
+      .now {
+        font-size: 10px;
+      }
+    }
+  }
 }
