@@ -6,7 +6,7 @@ import { SignIn } from './components/SignIn/SignIn';
 import { SignUp } from './components/SignUP/SignUp';
 import { YSettings } from './components/YSettings/YSettings';
 import { AddArticle } from './components/AddArticle/AddArticle';
-import { Router, Route, Switch } from 'react-router-dom';
+import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import { LoginPost } from './services/LoginService';
 import { ProfilePageService } from './services/ProfilePageService';
 import { ArticlePageService } from './services/ArticlePageService';
@@ -23,7 +23,7 @@ function App() {
   }, [user]);
   return (
     <div className="wrapper">
-      <Router>
+      <BrowserRouter basename="/">
         <Header />
         <Switch>
           <Route exact path="/" component={Main} />
@@ -34,7 +34,7 @@ function App() {
           <Route exact path="/post/:article?" component={ArticlePageService} />
           <Route exact path="/profile/:user?" component={ProfilePageService} />
         </Switch>
-      </Router>
+      </BrowserRouter>
     </div>
   );
 }
