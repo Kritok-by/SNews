@@ -33,7 +33,7 @@ export const AddArticle = () => {
       title,
       about,
       text,
-      tags.split(',').reverse(),
+      tags.split('#').reverse(),
       token,
       history,
       method,

@@ -1,9 +1,9 @@
-import { LinearProgress } from "@material-ui/core";
-import { Pagination } from "@material-ui/lab";
-import React, { useState } from "react";
-import Async from "react-async";
-import { useSelector } from "react-redux";
-import Post from "../components/Main/Posts/Post/Post";
+import { LinearProgress } from '@material-ui/core';
+import { Pagination } from '@material-ui/lab';
+import React, { useState } from 'react';
+import Async from 'react-async';
+import { useSelector } from 'react-redux';
+import Post from '../components/Main/Posts/Post/Post';
 
 const ProfilePostService = () => {
   const [page, setPage] = useState(0),
@@ -12,17 +12,17 @@ const ProfilePostService = () => {
   const header = () => {
     if (token) {
       return {
-        "Authorization": `Token ${token}`,
-        "Content-Type": "application/json; charset=utf-8",
+        Authorization: `Token ${token}`,
+        'Content-Type': 'application/json; charset=utf-8',
       };
     }
     return {
-      "Content-Type": "application/json; charset=utf-8",
+      'Content-Type': 'application/json; charset=utf-8',
     };
   };
 
   const loadPosts = () =>
-    fetch(`${url}${page*10}`, {
+    fetch(`${url}${page * 10}`, {
       headers: header(),
     })
       .then((res) => (res.ok ? res : Promise.reject(res)))
@@ -34,7 +34,7 @@ const ProfilePostService = () => {
       </Async.Pending>
       <Async.Fulfilled>
         {(data) => {
-          if(data.articlesCount !== 0){
+          if (data.articlesCount !== 0) {
             return (
               <>
                 {data.articles.map((i, ind) => {
@@ -44,15 +44,15 @@ const ProfilePostService = () => {
                   count={Math.ceil(data.articlesCount / 10)}
                   shape="rounded"
                   page={page + 1}
-                  onChange={(e, value) =>{
-                    setPage(value - 1)
-                    window.scrollTo(0, 0)
+                  onChange={(e, value) => {
+                    setPage(value - 1);
+                    window.scrollTo(0, 0);
                   }}
                 />
               </>
             );
           }
-          return <h3>Articles not yet...</h3>
+          return <h3>Articles not yet...</h3>;
         }}
       </Async.Fulfilled>
       <Async.Rejected>{(error) => <p>{error.message}</p>}</Async.Rejected>
