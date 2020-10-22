@@ -49,6 +49,7 @@ header {
           cursor: pointer;
           i {
             margin-right: 5px;
+            font-size: 20px;
           }
           &:hover {
             border-bottom: 2px solid #be0016;
@@ -61,8 +62,8 @@ header {
   .header-nav {
     .MuiAvatar-root {
       margin-right: 5px;
-      width: 30px;
-      height: 30px;
+      width: 35px;
+      height: 35px;
     }
   }
 }
