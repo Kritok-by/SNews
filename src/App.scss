@@ -12,12 +12,16 @@
       text-decoration: none;
     }
   }
+  hr {
+    margin-top: 0;
+  }
 }
 
 .wrapper {
   color: #444;
 }
-.MuiButtonBase-root.MuiChip-root.MuiChip-clickable, .MuiChip-root{
+.MuiButtonBase-root.MuiChip-root.MuiChip-clickable,
+.MuiChip-root {
   margin: 2px;
   border-radius: 4px;
   height: auto;
@@ -25,14 +29,14 @@
   background-color: transparent;
   cursor: pointer;
   transition: 170ms ease;
-  i.MuiChip-icon{
+  i.MuiChip-icon {
     color: #444;
   }
   &:hover {
     color: #be0016;
     border-color: #be0016;
     background-color: rgba(0, 0, 0, 0.04);
-    i.MuiChip-icon{
+    i.MuiChip-icon {
       color: #be0016;
     }
   }

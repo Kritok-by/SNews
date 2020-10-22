@@ -1,34 +1,34 @@
-.posts{
+.posts {
   padding: 30px 0;
-  font-family: "Noto Sans JP", sans-serif;
+  font-family: 'Noto Sans JP', sans-serif;
   color: #444;
-  a{
+  a {
     color: #444;
     text-decoration: none;
     transition: 170ms ease;
-    &:hover{
+    &:hover {
       color: #be0016;
     }
   }
-  nav{
+  nav {
     display: flex;
     justify-content: center;
     padding: 30px 0;
   }
-  .MuiLinearProgress-indeterminate{
-    background-color: rgba(190, 0, 22, .25);
-    .MuiLinearProgress-bar{
+  .MuiLinearProgress-indeterminate {
+    background-color: rgba(190, 0, 22, 0.25);
+    .MuiLinearProgress-bar {
       background-color: rgba(190, 0, 22, 1);
     }
   }
-  .MuiButtonBase-root.MuiPaginationItem-root.MuiPaginationItem-page{
+  .MuiButtonBase-root.MuiPaginationItem-root.MuiPaginationItem-page {
     color: #444;
     transition: 170ms ease;
     border-radius: 4px;
-    &:hover{
+    &:hover {
       color: #be0016;
     }
-    &:focus{
+    &:focus {
       border-color: #be0016;
       outline: 0;
       box-shadow: 0 0 0 0.2rem rgba(190, 0, 22, 0.25);
