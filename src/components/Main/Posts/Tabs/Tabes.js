@@ -26,13 +26,11 @@ export default function Tabes() {
       return <Tab label={`#${user.hashTag}`} />;
     }
   };
-
   function feedClick() {
     auth.id === undefined
       ? history.push('/signIn')
       : dispatch(currentUrl(feedUrl));
   }
-
   return (
     <div className="tabs-container">
       <AppBar position="static" color="default">
