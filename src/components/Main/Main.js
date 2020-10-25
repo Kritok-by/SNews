@@ -5,21 +5,21 @@ import Posts from './Posts/Posts';
 import Tags from './Tags/Tags';
 
 export default function Main() {
-  return(
+  return (
     <article>
       <div className="header-block">
-        <MainHeader/>
+        <MainHeader />
       </div>
       <div className="container main-container">
-      <div className="row">
-        <div className="col-md-9">
-          <Posts/>
+        <div className="row">
+          <div className="col-md-9">
+            <Posts />
+          </div>
+          <div className="col-md-3">
+            <Tags />
+          </div>
         </div>
-        <div className="col-md-3">
-          <Tags/>
-        </div>
-      </div>
       </div>
     </article>
-  )
-};
+  );
+}

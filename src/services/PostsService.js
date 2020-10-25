@@ -39,15 +39,21 @@ export const PostService = () => {
                 {data.articles.map((i, ind) => {
                   return <Post data={i} key={ind} />;
                 })}
-                <Pagination
-                  count={Math.ceil(data.articlesCount / 10)}
-                  shape="rounded"
-                  page={page + 1}
-                  onChange={(e, value) => {
-                    setPage(value - 1);
-                    window.scrollTo(0, 0);
-                  }}
-                />
+                <>
+                  {data.articlesCount > 10 ? (
+                    <Pagination
+                      count={Math.ceil(data.articlesCount / 10)}
+                      shape="rounded"
+                      page={page + 1}
+                      onChange={(e, value) => {
+                        setPage(value - 1);
+                        window.scrollTo(0, 0);
+                      }}
+                    />
+                  ) : (
+                    <></>
+                  )}
+                </>
               </>
             );
           }
