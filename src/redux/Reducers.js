@@ -11,6 +11,7 @@ import {
   SHOW_ALERT,
   HIDE_ALERT,
   EDIT_ARTICLE,
+  GET_COMMENTS,
 } from './Types';
 
 const defState = {
@@ -30,6 +31,7 @@ const defState = {
     tags: [],
     slug: '',
   },
+  comments: [],
 };
 
 const autorize = (state = defState, action) => {
@@ -77,8 +79,18 @@ const articles = (state = defState, action) => {
   }
 };
 
+const comments = (state = defState, action) => {
+  switch (action.type) {
+    case GET_COMMENTS:
+      return { ...state, comments: [...action.data] };
+    default:
+      return state;
+  }
+};
+
 export const Reducers = combineReducers({
-  autorize: autorize,
-  articles: articles,
-  profile: profile,
+  autorize,
+  articles,
+  profile,
+  comments,
 });

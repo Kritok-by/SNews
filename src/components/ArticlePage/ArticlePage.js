@@ -10,6 +10,7 @@ import {
 import { deleteArticle } from '../../services/deleteArticle';
 import { Like } from '../../services/LikeService';
 import './ArticlePage.scss';
+import { Comments } from './Comments/Comments';
 
 export const ArticlePage = ({ state }) => {
   const [like, setLike] = useState(state.favorited),
@@ -24,7 +25,6 @@ export const ArticlePage = ({ state }) => {
     likeUrl = `https://conduit.productionready.io/api/articles/${slug}/favorite`,
     followUrl = `https://conduit.productionready.io/api/profiles/${athor}/follow`,
     [likeCount, setLikeCount] = useState(state.favoritesCount);
-
   const onLike = () => {
     if (!currentUser) {
       history.push('/signIn');
@@ -149,6 +149,12 @@ export const ArticlePage = ({ state }) => {
         <div className="row">
           <div className="col-md-12 article-text">
             <p>{state.body}</p>
+          </div>
+        </div>
+        <hr />
+        <div className="row">
+          <div className="offset-2 col-md-8 article-text">
+            <Comments slug={slug} token={user} />
           </div>
         </div>
       </div>

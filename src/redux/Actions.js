@@ -10,6 +10,7 @@ import {
   HIDE_ALERT,
   CURRENT_POST,
   EDIT_ARTICLE,
+  GET_COMMENTS,
 } from './Types';
 
 export const logIn = (data) => {
@@ -96,5 +97,18 @@ export const prevArticleValues = (values) => {
   return {
     type: EDIT_ARTICLE,
     values,
+  };
+};
+
+export const getComments = (slug) => {
+  return async (dispatch) => {
+    const res = await fetch(
+      `https://conduit.productionready.io/api/articles/${slug}/comments`
+    );
+    const data = await res.json();
+    dispatch({
+      type: GET_COMMENTS,
+      data: data.comments,
+    });
   };
 };

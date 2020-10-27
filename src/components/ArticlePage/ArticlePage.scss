@@ -41,6 +41,25 @@
   .header-article {
     padding: 20px 0;
   }
+
+  .comments {
+    .MuiPaper-root.MuiCard-root.MuiPaper-rounded {
+      margin: 10px auto;
+      .author-comment {
+        display: flex;
+        align-items: center;
+        padding-bottom: 1rem;
+        .MuiAvatar-root {
+          width: 25px;
+          height: 25px;
+          margin-right: 5px;
+        }
+      }
+      p.MuiTypography-root.MuiTypography-body2 {
+        font-size: 20px;
+      }
+    }
+  }
 }
 
 @media (max-width: 766px) {
