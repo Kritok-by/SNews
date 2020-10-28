@@ -38,6 +38,7 @@ export const Comments = ({ slug, token }) => {
     );
     history.push(`/profile/${user}`);
   };
+  console.log(comments);
   return (
     <>
       <form className="add-comment" onSubmit={postComment}>
