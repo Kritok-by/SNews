@@ -31,8 +31,8 @@ const ProfilePostService = () => {
   return (
     <Async promiseFn={loadPosts}>
       <Async.Pending>
-        {preArr.map((i) => (
-          <PreloaderPost />
+        {preArr.map((i, ind) => (
+          <PreloaderPost key={ind} />
         ))}
       </Async.Pending>
       <Async.Fulfilled>

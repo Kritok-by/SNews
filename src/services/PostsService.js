@@ -19,7 +19,6 @@ export const PostService = () => {
       'Content-Type': 'application/json; charset=utf-8',
     };
   };
-  console.log(preArr);
   const [page, setPage] = useState(0),
     url = useSelector((i) => i.articles.url);
   const loadPosts = () =>
@@ -31,8 +30,8 @@ export const PostService = () => {
   return (
     <Async promiseFn={loadPosts}>
       <Async.Pending>
-        {preArr.map((i) => (
-          <PreloaderPost />
+        {preArr.map((i, ind) => (
+          <PreloaderPost key={ind} />
         ))}
       </Async.Pending>
       <Async.Fulfilled>

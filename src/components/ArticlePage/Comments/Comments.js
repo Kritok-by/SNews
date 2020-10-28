@@ -21,7 +21,6 @@ export const Comments = ({ slug, token }) => {
     dispatch = useDispatch(),
     currentUser = useSelector((i) => i.autorize.currentUser.username),
     history = useHistory();
-  console.log(comments);
   const postComment = async (e) => {
     e.preventDefault();
     await fetch(
