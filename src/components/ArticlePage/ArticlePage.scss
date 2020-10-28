@@ -62,6 +62,9 @@
     .comments {
       margin-top: 20px;
       .MuiPaper-root.MuiCard-root.MuiPaper-rounded {
+        justify-content: flex-end;
+        display: flex;
+        flex-wrap: wrap;
         margin: 10px auto;
         border-radius: 4px;
         box-shadow: none;
@@ -73,27 +76,36 @@
             rgba(0, 0, 0, 0.14) 0px 2px 2px 0px,
             rgba(0, 0, 0, 0.12) 0px 1px 5px 0px;
         }
-        .author-comment {
-          display: flex;
-          align-items: center;
-          padding-bottom: 1rem;
-          .MuiAvatar-root {
-            width: 25px;
-            height: 25px;
-            margin-right: 5px;
-          }
-          p {
-            cursor: pointer;
-            &:hover {
+        .MuiCardContent-root {
+          width: 100%;
+          .author-comment {
+            display: flex;
+            align-items: center;
+            padding-bottom: 1rem;
+            .MuiAvatar-root {
+              width: 25px;
+              height: 25px;
+              margin-right: 5px;
+            }
+            p {
+              cursor: pointer;
               &:hover {
-                color: #be0016;
-                border-bottom: 1px solid #be0016;
+                &:hover {
+                  color: #be0016;
+                  border-bottom: 1px solid #be0016;
+                }
               }
             }
           }
+          p.MuiTypography-root.MuiTypography-body2 {
+            font-size: 20px;
+          }
         }
-        p.MuiTypography-root.MuiTypography-body2 {
-          font-size: 20px;
+        .MuiButtonBase-root {
+          padding: 0;
+          &:focus {
+            outline: none;
+          }
         }
       }
     }
