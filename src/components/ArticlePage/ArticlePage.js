@@ -153,7 +153,7 @@ export const ArticlePage = ({ state }) => {
         </div>
         <hr />
         <div className="row">
-          <div className="offset-2 col-md-8 article-text">
+          <div className="offset-2 col-md-8 article-comments">
             <Comments slug={slug} token={user} />
           </div>
         </div>

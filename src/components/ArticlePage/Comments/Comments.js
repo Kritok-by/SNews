@@ -1,12 +1,18 @@
 import { Avatar, Card, CardContent, Typography } from '@material-ui/core';
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { getComments } from '../../../redux/Actions';
+import { useHistory } from 'react-router';
+import {
+  currentProfile,
+  currentUrl,
+  getComments,
+} from '../../../redux/Actions';
 
 export const Comments = ({ slug, token }) => {
   const comments = useSelector((i) => i.comments.comments),
     [text, setText] = useState(),
-    dispatch = useDispatch();
+    dispatch = useDispatch(),
+    history = useHistory();
 
   const postComment = async (e) => {
     e.preventDefault();
@@ -23,16 +29,23 @@ export const Comments = ({ slug, token }) => {
     );
     dispatch(getComments(slug));
   };
-  useEffect(() => {});
-  console.log(comments);
+  const linkProfile = (user) => {
+    dispatch(currentProfile(user));
+    dispatch(
+      currentUrl(
+        `https://conduit.productionready.io/api/articles?author=${user}&limit=10&offset=`
+      )
+    );
+    history.push(`/profile/${user}`);
+  };
   return (
     <>
       <form className="add-comment" onSubmit={postComment}>
         <div className="form-group">
-          <label>Write your article (in markdown)</label>
+          <label>Write your comment</label>
           <textarea
             className="form-control"
-            rows="3"
+            rows="2"
             value={text}
             onChange={(e) => setText(e.target.value)}
           ></textarea>
@@ -48,7 +61,11 @@ export const Comments = ({ slug, token }) => {
               <CardContent>
                 <div className="author-comment">
                   <Avatar alt="Remy Sharp" src={i.author.image} />
-                  <Typography color="textSecondary" gutterBottom>
+                  <Typography
+                    color="textSecondary"
+                    gutterBottom
+                    onClick={() => linkProfile(i.author.username)}
+                  >
                     {i.author.username}
                   </Typography>
                 </div>
