@@ -1,12 +1,13 @@
-import { LinearProgress } from '@material-ui/core';
 import { Pagination } from '@material-ui/lab';
 import React, { useState } from 'react';
 import { Async } from 'react-async';
 import { useSelector } from 'react-redux';
 import Post from '../components/Main/Posts/Post/Post';
+import PreloaderPost from '../components/Main/Posts/Post/PreloaderPost';
 
 export const PostService = () => {
   const token = useSelector((i) => i.autorize.currentUser.token);
+  const preArr = [...'qwertyuiop'];
   const header = () => {
     if (token) {
       return {
@@ -18,6 +19,7 @@ export const PostService = () => {
       'Content-Type': 'application/json; charset=utf-8',
     };
   };
+  console.log(preArr);
   const [page, setPage] = useState(0),
     url = useSelector((i) => i.articles.url);
   const loadPosts = () =>
@@ -29,7 +31,9 @@ export const PostService = () => {
   return (
     <Async promiseFn={loadPosts}>
       <Async.Pending>
-        <LinearProgress />
+        {preArr.map((i) => (
+          <PreloaderPost />
+        ))}
       </Async.Pending>
       <Async.Fulfilled>
         {(data) => {

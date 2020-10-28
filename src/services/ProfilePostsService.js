@@ -1,13 +1,14 @@
-import { LinearProgress } from '@material-ui/core';
 import { Pagination } from '@material-ui/lab';
 import React, { useState } from 'react';
 import Async from 'react-async';
 import { useSelector } from 'react-redux';
 import Post from '../components/Main/Posts/Post/Post';
+import PreloaderPost from '../components/Main/Posts/Post/PreloaderPost';
 
 const ProfilePostService = () => {
   const [page, setPage] = useState(0),
-    url = useSelector((i) => i.articles.url);
+    url = useSelector((i) => i.articles.url),
+    preArr = [...'qwertyuiop'];
   const token = useSelector((i) => i.autorize.currentUser.token);
   const header = () => {
     if (token) {
@@ -30,7 +31,9 @@ const ProfilePostService = () => {
   return (
     <Async promiseFn={loadPosts}>
       <Async.Pending>
-        <LinearProgress />
+        {preArr.map((i) => (
+          <PreloaderPost />
+        ))}
       </Async.Pending>
       <Async.Fulfilled>
         {(data) => {
