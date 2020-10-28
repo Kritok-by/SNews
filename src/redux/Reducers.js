@@ -2,7 +2,6 @@ import { combineReducers } from 'redux';
 import {
   LOGOUT,
   LOGIN_DATA,
-  NEXT_PAGE,
   CURRENT_PROFILE,
   HASHTAG,
   NUMBER_TAB,
@@ -18,7 +17,6 @@ const defState = {
   currentUser: {},
   errorLogin: [],
   posts: {},
-  page: 0,
   profile: '',
   hashTag: 'none',
   numberTab: 1,
@@ -60,8 +58,6 @@ const profile = (state = defState, action) => {
 
 const articles = (state = defState, action) => {
   switch (action.type) {
-    case NEXT_PAGE:
-      return { ...state, page: action.num };
     case HASHTAG:
       return { ...state, hashTag: action.tag };
     case NUMBER_TAB:

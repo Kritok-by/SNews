@@ -17,6 +17,7 @@ export const Header = () => {
     dispatch(currentUrl(url));
     dispatch(numberTab(1));
     dispatch(hashTag('none'));
+    window.scrollTo(0, 0);
   };
   return (
     <header>

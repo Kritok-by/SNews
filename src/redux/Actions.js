@@ -1,7 +1,6 @@
 import {
   LOGIN_DATA,
   LOGOUT,
-  NEXT_PAGE,
   CURRENT_PROFILE,
   HASHTAG,
   NUMBER_TAB,
@@ -23,13 +22,6 @@ export const logIn = (data) => {
 export const logOut = () => {
   return {
     type: LOGOUT,
-  };
-};
-
-export const nextPage = (num) => {
-  return {
-    type: NEXT_PAGE,
-    num,
   };
 };
 
