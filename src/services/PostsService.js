@@ -19,11 +19,8 @@ export const PostService = () => {
       'Content-Type': 'application/json; charset=utf-8',
     };
   };
-  const [page, setPage] = useState(
-      sessionStorage.getItem('page') ? +sessionStorage.getItem('page') : 0
-    ),
+  const [page, setPage] = useState(0),
     url = useSelector((i) => i.articles.url);
-  sessionStorage.setItem('page', page);
   const loadPosts = () =>
     fetch(`${url}${page * 10}`, {
       headers: header(),

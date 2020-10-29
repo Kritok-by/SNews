@@ -6,12 +6,9 @@ import Post from '../components/Main/Posts/Post/Post';
 import PreloaderPost from '../components/Main/Posts/Post/PreloaderPost';
 
 const ProfilePostService = () => {
-  const [page, setPage] = useState(
-      sessionStorage.getItem('page') ? +sessionStorage.getItem('page') : 0
-    ),
+  const [page, setPage] = useState(0),
     url = useSelector((i) => i.articles.url),
     preArr = [...'qwertyuiop'];
-  sessionStorage.setItem('page', page);
   const token = useSelector((i) => i.autorize.currentUser.token);
   const header = () => {
     if (token) {
