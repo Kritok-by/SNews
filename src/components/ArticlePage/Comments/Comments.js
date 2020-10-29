@@ -23,19 +23,23 @@ export const Comments = ({ slug, token }) => {
     history = useHistory();
   const postComment = async (e) => {
     e.preventDefault();
-    await fetch(
-      `https://conduit.productionready.io/api/articles/${slug}/comments`,
-      {
-        method: 'POST',
-        body: JSON.stringify({ body: text }),
-        headers: {
-          Authorization: `Token ${token}`,
-          'Content-Type': 'application/json; charset=utf-8',
-        },
-      }
-    );
-    dispatch(getComments(slug));
-    setText('');
+    if (currentUser) {
+      await fetch(
+        `https://conduit.productionready.io/api/articles/${slug}/comments`,
+        {
+          method: 'POST',
+          body: JSON.stringify({ body: text }),
+          headers: {
+            Authorization: `Token ${token}`,
+            'Content-Type': 'application/json; charset=utf-8',
+          },
+        }
+      );
+      dispatch(getComments(slug));
+      setText('');
+    } else {
+      history.push('/signIn');
+    }
   };
   const delPost = async (id) => {
     await fetch(
