@@ -1,10 +1,10 @@
-import { Avatar, Chip } from "@material-ui/core";
-import React, { useState } from "react";
-import "./ProfilePage.scss";
-import { useSelector } from "react-redux";
-import { Like } from "../../services/LikeService";
-import ProfilePosts from "./ProfilePosts/ProfilePosts";
-import { Link, useHistory } from "react-router-dom";
+import { Avatar, Chip } from '@material-ui/core';
+import React, { useState } from 'react';
+import './ProfilePage.scss';
+import { useSelector } from 'react-redux';
+import { Like } from '../../services/LikeService';
+import ProfilePosts from './ProfilePosts/ProfilePosts';
+import { Link, useHistory } from 'react-router-dom';
 
 export const ProfilePage = ({ data }) => {
   const currentUser = useSelector((i) => i.autorize.currentUser.username),
@@ -14,31 +14,52 @@ export const ProfilePage = ({ data }) => {
     followUrl = `https://conduit.productionready.io/api/profiles/${data.username}/follow`;
 
   const buttons = () => {
-    if (currentUser === data.username) {
-      return (
-        <Link to="/settings">
-          <Chip icon={<i className="fas fa-cog"/>} label="Settings profile" />
-        </Link>
-      );
+    switch (true) {
+      case currentUser === data.username:
+        return (
+          <Link to="/settings">
+            <Chip
+              icon={<i className="fas fa-cog" />}
+              label="Settings profile"
+            />
+          </Link>
+        );
+
+      case follow:
+        return (
+          <Chip
+            icon={<i className="fas fa-minus" />}
+            label="Unfollow"
+            onClick={onFollow}
+          />
+        );
+
+      default:
+        return (
+          <Chip
+            icon={<i className="fas fa-plus" />}
+            label="Follow"
+            onClick={onFollow}
+          />
+        );
     }
-    if (follow) {
-      return <Chip icon={<i className="fas fa-minus"/>} label="Unfollow" onClick={onFollow} />;
-    }
-    return <Chip icon={<i className="fas fa-plus"/>} label="Follow" onClick={onFollow} />;
   };
+
   const onFollow = () => {
-    if(!currentUser){
-      history.push('/signIn')}
-      else{
-    let method;
-    setFollow((prev) => !prev);
-    if (follow) {
-      method = "DELETE";
+    if (!currentUser) {
+      history.push('/signIn');
     } else {
-      method = "POST";
+      let method;
+      setFollow((prev) => !prev);
+      if (follow) {
+        method = 'DELETE';
+      } else {
+        method = 'POST';
+      }
+      Like(followUrl, method, user);
     }
-    Like(followUrl, method, user);}
   };
+
   return (
     <article className="profile">
       <div className="header-block">

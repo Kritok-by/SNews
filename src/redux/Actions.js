@@ -12,95 +12,66 @@ import {
   GET_COMMENTS,
 } from './Types';
 
-export const logIn = (data) => {
-  return {
-    type: LOGIN_DATA,
-    data,
-  };
+export const logIn = (data) => ({ type: LOGIN_DATA, data });
+
+export const logOut = () => ({ type: LOGOUT });
+
+export const currentProfile = (user) => ({
+  type: CURRENT_PROFILE,
+  user,
+});
+
+export const currentPost = (slug) => ({
+  type: CURRENT_POST,
+  slug,
+});
+
+export const hashTag = (tag) => ({
+  type: HASHTAG,
+  tag,
+});
+
+export const numberTab = (num) => ({
+  type: NUMBER_TAB,
+  num,
+});
+
+export const currentPosts = (data) => (dispatch) => {
+  dispatch({ type: CURRENT_POSTS, data });
 };
 
-export const logOut = () => {
-  return {
-    type: LOGOUT,
-  };
+export const currentUrl = (url) => ({
+  type: URL,
+  url,
+});
+
+export const showAlert = (text) => (dispatch) => {
+  dispatch({
+    type: SHOW_ALERT,
+    payload: text,
+  });
+
+  setTimeout(() => {
+    dispatch(hideAlert());
+  }, 3000);
 };
 
-export const currentProfile = (user) => {
-  return {
-    type: CURRENT_PROFILE,
-    user,
-  };
-};
+export const hideAlert = () => ({
+  type: HIDE_ALERT,
+});
 
-export const currentPost = (slug) => {
-  return {
-    type: CURRENT_POST,
-    slug,
-  };
-};
+export const prevArticleValues = (values) => ({
+  type: EDIT_ARTICLE,
+  values,
+});
 
-export const hashTag = (tag) => {
-  return {
-    type: HASHTAG,
-    tag,
-  };
-};
-
-export const numberTab = (num) => {
-  return {
-    type: NUMBER_TAB,
-    num,
-  };
-};
-
-export const currentPosts = (data) => {
-  return (dispatch) => {
-    dispatch({ type: CURRENT_POSTS, data });
-  };
-};
-
-export const currentUrl = (url) => {
-  return {
-    type: URL,
-    url,
-  };
-};
-
-export function showAlert(text) {
-  return (dispatch) => {
-    dispatch({
-      type: SHOW_ALERT,
-      payload: text,
-    });
-
-    setTimeout(() => {
-      dispatch(hideAlert());
-    }, 3000);
-  };
-}
-
-export function hideAlert() {
-  return {
-    type: HIDE_ALERT,
-  };
-}
-
-export const prevArticleValues = (values) => {
-  return {
-    type: EDIT_ARTICLE,
-    values,
-  };
-};
-
-export const getComments = (slug) => {
-  return async (dispatch) => {
-    const res = await fetch(
-      `https://conduit.productionready.io/api/articles/${slug}/comments`
-    );
-    const data = await res.json();
-    dispatch({
-      type: GET_COMMENTS,
-      data: data.comments,
-    });
-  };
+export const getComments = (slug) => async (dispatch) => {
+  const res = await fetch(
+    `https://conduit.productionready.io/api/articles/${slug}/comments`
+  );
+  const data = await res.json();
+  dispatch({
+    type: GET_COMMENTS,
+    data: data.comments,
+  });
 };

@@ -12,9 +12,10 @@ export default function ProfileTabs({ user }) {
     myUrl = `https://conduit.productionready.io/api/articles?author=${user}&limit=10&offset=`,
     favoritedUrl = `https://conduit.productionready.io/api/articles?favorited=${user}&limit=10&offset=`;
 
-  const handleChange = (event, newValue) => {
+  const handleChange = (newValue) => {
     setValue(newValue);
   };
+
   useEffect(() => {
     dispatch(currentUrl(currUrl));
   });

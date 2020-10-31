@@ -9,22 +9,20 @@ import { Async } from 'react-async';
 import React from 'react';
 
 export const CommentsService = ({ data }) => {
-  console.log(data);
   const loadPosts = () =>
     fetch(
       `https://conduit.productionready.io/api/articles/${data.slug}/comments`
     )
       .then((res) => (res.ok ? res : Promise.reject(res)))
       .then((res) => res.json());
+
   return (
     <Async promiseFn={loadPosts}>
       <Async.Pending>
         <LinearProgress />
       </Async.Pending>
       <Async.Fulfilled>
-        {(data) => {
-          console.log(data);
-          return (
+        {(data) => (
             <>
               {data.comments.map((i, ind) => {
                 return (
@@ -43,7 +41,7 @@ export const CommentsService = ({ data }) => {
               })}
             </>
           );
-        }}
+        }
       </Async.Fulfilled>
       <Async.Rejected>{(error) => <p>{error.message}</p>}</Async.Rejected>
     </Async>

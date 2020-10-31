@@ -1,12 +1,17 @@
-import React from 'react'
-import {Link} from 'react-router-dom'
+import React from 'react';
+import { Link } from 'react-router-dom';
+
 export default function NotAuthorized() {
-  return(
+  return (
     <nav className="header-nav">
       <ul>
-        <Link to='/signIn'><li>Sign In</li></Link>
-        <Link to='/register'><li>Sign Up</li></Link>
+        <Link to="/signIn">
+          <li>Sign In</li>
+        </Link>
+        <Link to="/register">
+          <li>Sign Up</li>
+        </Link>
       </ul>
     </nav>
-  )
-};
+  );
+}

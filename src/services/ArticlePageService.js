@@ -11,15 +11,14 @@ export const ArticlePageService = ({ match }) => {
 
   dispatch(getComments(match.params.article));
 
-  const headers = () => {
-    if (token) {
-      return {
-        Authorization: `Token ${token}`,
-        'Content-Type': 'application/json; charset=utf-8',
-      };
-    }
-    return { 'Content-Type': 'application/json; charset=utf-8' };
-  };
+  const headers = () =>
+    token
+      ? {
+          Authorization: `Token ${token}`,
+          'Content-Type': 'application/json; charset=utf-8',
+        }
+      : { 'Content-Type': 'application/json; charset=utf-8' };
+
   const loadPost = () =>
     fetch(
       `https://conduit.productionready.io/api/articles/${match.params.article}`,
@@ -29,6 +28,7 @@ export const ArticlePageService = ({ match }) => {
     )
       .then((res) => (res.ok ? res : Promise.reject(res)))
       .then((res) => res.json());
+
   return (
     <Async promiseFn={loadPost}>
       <Async.Pending>

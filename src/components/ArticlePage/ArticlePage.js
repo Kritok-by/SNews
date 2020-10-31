@@ -25,6 +25,7 @@ export const ArticlePage = ({ state }) => {
     likeUrl = `https://conduit.productionready.io/api/articles/${slug}/favorite`,
     followUrl = `https://conduit.productionready.io/api/profiles/${athor}/follow`,
     [likeCount, setLikeCount] = useState(state.favoritesCount);
+
   const onLike = () => {
     if (!currentUser) {
       history.push('/signIn');
@@ -41,10 +42,12 @@ export const ArticlePage = ({ state }) => {
       Like(likeUrl, method, user);
     }
   };
+
   const onDelete = () => {
     deleteArticle(slug, user);
     history.push('/');
   };
+
   const onEdit = () => {
     history.push('/new-post');
     dispatch(
@@ -71,50 +74,42 @@ export const ArticlePage = ({ state }) => {
       Like(followUrl, method, user);
     }
   };
-  const ifFollow = () => {
-    if (follow) {
-      return (
-        <Chip
-          icon={<i className="fas fa-minus" />}
-          label="Unfollow"
-          onClick={onFollow}
-        />
-      );
-    }
-    return (
+  const ifFollow = () =>
+    follow ? (
+      <Chip
+        icon={<i className="fas fa-minus" />}
+        label="Unfollow"
+        onClick={onFollow}
+      />
+    ) : (
       <Chip
         icon={<i className="fas fa-plus" />}
         label="Follow"
         onClick={onFollow}
       />
     );
-  };
 
-  const ifAutorize = () => {
-    if (currentUser === athor) {
-      return (
-        <div className="buttons">
-          <Chip
-            icon={<i className="fas fa-pen" />}
-            label="Edit Article"
-            onClick={onEdit}
-          />
-          <Chip
-            icon={<i className="far fa-trash-alt" />}
-            label="Delete Article"
-            onClick={onDelete}
-          />
-        </div>
-      );
-    } else {
-      return (
-        <div className="buttons">
-          {ifFollow()}
-          <Chip label={`Like (${likeCount})`} onClick={onLike} />
-        </div>
-      );
-    }
-  };
+  const ifAutorize = () =>
+    currentUser === athor ? (
+      <div className="buttons">
+        <Chip
+          icon={<i className="fas fa-pen" />}
+          label="Edit Article"
+          onClick={onEdit}
+        />
+        <Chip
+          icon={<i className="far fa-trash-alt" />}
+          label="Delete Article"
+          onClick={onDelete}
+        />
+      </div>
+    ) : (
+      <div className="buttons">
+        {ifFollow()}
+        <Chip label={`Like (${likeCount})`} onClick={onLike} />
+      </div>
+    );
+
   const linkProfile = () => {
     dispatch(currentProfile(athor));
     dispatch(currentUrl(profileUrl));
@@ -127,6 +122,7 @@ export const ArticlePage = ({ state }) => {
       month: 'long',
     })} ${date.getFullYear()}`;
   };
+
   return (
     <article className="article-page">
       <div className="container ">

@@ -3,7 +3,7 @@ import './Post.scss';
 import 'semantic-ui-css/semantic.min.css';
 import { Skeleton } from '@material-ui/lab';
 
-function PreloaderPost() {
+export default function PreloaderPost() {
   return (
     <div className="post">
       <div className="who-when">
@@ -32,5 +32,3 @@ function PreloaderPost() {
     </div>
   );
 }
-
-export default PreloaderPost;

@@ -21,6 +21,7 @@ function App() {
       LoginPost(strArr[0], strArr[1]);
     }
   }, [user]);
+
   return (
     <div className="wrapper">
       <BrowserRouter basename="/">

@@ -25,20 +25,23 @@ export const YSettings = () => {
     dispatch(numberTab(1));
     dispatch(currentUrl(url));
   };
+
   const alert = () => {
-    if (error.length !== 0) {
-      return error.map((i, e) => (
+    return (
+      error.length !== 0 &&
+      error.map((i, e) => (
         <Alert key={e} variant="outlined" severity="error">
           {i}
         </Alert>
-      ));
-    }
+      ))
+    );
   };
 
   const submit = (e) => {
     e.preventDefault();
     NewSettings(img, name, bio, email, pass, state);
   };
+
   return (
     <div className="container">
       <div className="row">

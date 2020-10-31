@@ -35,7 +35,6 @@ export default function Authorized() {
     <nav className="header-nav">
       <ul>
         <Link to="/new-post">
-          {' '}
           <li onClick={toDefoltValues}>
             <i className="far fa-edit" />
             <span>New Post</span>

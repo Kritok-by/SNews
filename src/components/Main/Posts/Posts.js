@@ -1,10 +1,7 @@
-
-import React from "react";
-import Tabes from "./Tabs/Tabes";
-import "./Posts.scss";
-import { PostService } from "../../../services/PostsService";
-
-
+import React from 'react';
+import Tabes from './Tabs/Tabes';
+import './Posts.scss';
+import { PostService } from '../../../services/PostsService';
 
 export default function Posts() {
   return (
@@ -12,7 +9,7 @@ export default function Posts() {
       <Tabes />
       <hr />
       <div className="posts">
-      <PostService/>
+        <PostService />
       </div>
     </div>
   );

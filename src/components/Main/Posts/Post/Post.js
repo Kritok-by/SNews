@@ -23,6 +23,7 @@ function Post({ data }) {
     profileUrl = `https://conduit.productionready.io/api/articles?author=${data.author.username}&limit=10&offset=`,
     [likeCount, setLikeCount] = useState(data.favoritesCount),
     history = useHistory();
+
   const handleClick = (i) => {
     dispatch(hashTag(i));
     dispatch(numberTab(2));
@@ -34,6 +35,7 @@ function Post({ data }) {
     history.push('/');
     window.scrollTo(0, 130);
   };
+
   const onLike = () => {
     if (user) {
       let method;
@@ -57,12 +59,14 @@ function Post({ data }) {
     dispatch(currentProfile(data.author.username));
     dispatch(currentUrl(profileUrl));
   };
+
   const thisDate = () => {
     const date = new Date(data.createdAt);
     return `${date.getDate()} ${date.toLocaleString('en', {
       month: 'long',
     })} ${date.getFullYear()}`;
   };
+
   return (
     <div className="post">
       <div className="who-when">

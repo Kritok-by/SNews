@@ -75,14 +75,10 @@ const articles = (state = defState, action) => {
   }
 };
 
-const comments = (state = defState, action) => {
-  switch (action.type) {
-    case GET_COMMENTS:
-      return { ...state, comments: [...action.data] };
-    default:
-      return state;
-  }
-};
+const comments = (state = defState, action) =>
+  (action.type = GET_COMMENTS
+    ? { ...state, comments: [...action.data] }
+    : state);
 
 export const Reducers = combineReducers({
   autorize,

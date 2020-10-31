@@ -21,6 +21,7 @@ export const Comments = ({ slug, token }) => {
     dispatch = useDispatch(),
     currentUser = useSelector((i) => i.autorize.currentUser.username),
     history = useHistory();
+
   const postComment = async (e) => {
     e.preventDefault();
     if (currentUser) {
@@ -41,6 +42,7 @@ export const Comments = ({ slug, token }) => {
       history.push('/signIn');
     }
   };
+
   const delPost = async (id) => {
     await fetch(
       `https://conduit.productionready.io/api/articles/${slug}/comments/${id}`,
@@ -54,6 +56,7 @@ export const Comments = ({ slug, token }) => {
     );
     dispatch(getComments(slug));
   };
+
   const linkProfile = (user) => {
     dispatch(currentProfile(user));
     dispatch(
@@ -63,6 +66,7 @@ export const Comments = ({ slug, token }) => {
     );
     history.push(`/profile/${user}`);
   };
+
   return (
     <>
       <form className="add-comment" onSubmit={postComment}>

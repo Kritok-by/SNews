@@ -51,7 +51,8 @@ header {
             margin-right: 5px;
             font-size: 20px;
           }
-          &:hover {
+          &:hover,
+          &:active {
             border-bottom: 2px solid #be0016;
             color: #be0016;
           }

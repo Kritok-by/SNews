@@ -21,16 +21,15 @@ export default function Tabes() {
     dispatch(numberTab(newValue));
   };
 
-  const AddTag = () => {
-    if (user.hashTag !== 'none') {
-      return <Tab label={`#${user.hashTag}`} />;
-    }
-  };
+  const AddTag = () =>
+    user.hashTag !== 'none' && <Tab label={`#${user.hashTag}`} />;
+
   function feedClick() {
     auth.id === undefined
       ? history.push('/signIn')
       : dispatch(currentUrl(feedUrl));
   }
+
   return (
     <div className="tabs-container">
       <AppBar position="static" color="default">
